@@ -123,6 +123,9 @@ main section#one .hero {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background-image: url("C:/Users/stooo/Tatuv_web/Design/01_ideas/schema_mar_04.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 main section#one .hero .intro-text-container {
