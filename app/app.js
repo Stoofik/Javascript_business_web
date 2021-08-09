@@ -1,32 +1,25 @@
 // Nacteni hlavni stranky
 const loadHero = () => {
     const introNav = document.querySelector("nav");
-    const introText = document.querySelector(".intro-text-container");
-    const introPicture = document.querySelector(".intro-picture-container");
-    const mainBtn = document.querySelector(".mainBtn");
 
     window.addEventListener("load", function() {
         introNav.style.cssText = "transform: translateY(0%)";
-        introText.style.cssText = "transform: translateX(0%)";
-        introPicture.style.cssText = "transform: translateX(0%)";
-        mainBtn.style.cssText = "transform: translateX(0%)";
     });
-
 };
 loadHero();
 
 // Postupne zobrazeni textu na hlavni strance
-const loadIntroText = () => {
-    const introTextH3 = document.querySelector(".intro-text h3");
-    const introTextH1 = document.querySelector(".intro-text h1");
-    const introTextp = document.querySelector(".intro-text p");
+// const loadIntroText = () => {
+//     const introTextH3 = document.querySelector(".intro-text h3");
+//     const introTextH1 = document.querySelector(".intro-text h1");
+//     const introTextp = document.querySelector(".intro-text p");
 
-    setTimeout(function(){ introTextH3.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1100);
-    setTimeout(function(){ introTextH1.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1200);
-    setTimeout(function(){ introTextp.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1300);
-};
+//     setTimeout(function(){ introTextH3.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1100);
+//     setTimeout(function(){ introTextH1.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1200);
+//     setTimeout(function(){ introTextp.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1300);
+// };
 
-loadIntroText();
+// loadIntroText();
 
 // postupne zobrazeni textu pri scrollovani strankou
 const textAppearOnScroll = () => {
@@ -114,11 +107,11 @@ const scrollToLink = () => {
     });
 
     //from main page to services
-    let mainBtn = document.querySelector(".mainBtn");
+    // let mainBtn = document.querySelector(".mainBtn");
 
-    mainBtn.addEventListener("click", function() {
-        smoothScroll("section#two", 1000);
-    });
+    // mainBtn.addEventListener("click", function() {
+    //     smoothScroll("section#two", 1000);
+    // });
 
     //from footer to main page
     let footerHomeBtn = document.querySelector(".back-main-page");
@@ -150,8 +143,6 @@ const scrollToLink = () => {
 };
 
 scrollToLink();
-
-
 
 
 // postupne zobrazeni obrazku pri scrollu

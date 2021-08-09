@@ -12,11 +12,10 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: whitesmoke;
+  background: #103E6C;
   z-index: 997;
-  top: 0;
-  left: 0;
   width: 100%;
+  border-bottom: 1px solid white;
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   -webkit-transition: 1s ease-in;
@@ -29,7 +28,7 @@ nav .navbar-logo {
           flex: 1;
   height: 100%;
   width: 100%;
-  background: whitesmoke;
+  background: #103E6C;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -44,21 +43,18 @@ nav .navbar-logo {
 
 nav .navbar-logo .logo-over-polygon {
   position: absolute;
-  background: whitesmoke;
-  height: 6vh;
+  background: #103E6C;
+  height: 3vh;
   width: 6vw;
-  margin-top: 2vh;
-  margin-right: 15vw;
   z-index: 998;
+  top: 0;
 }
 
 nav .navbar-logo .logo-border-polygon {
   position: absolute;
   height: 6vh;
   width: 15vw;
-  margin-top: 13.5vh;
-  margin-right: 15vw;
-  border: 2px solid black;
+  border: 2px solid white;
 }
 
 nav .navbar-logo .logo-text {
@@ -67,8 +63,6 @@ nav .navbar-logo .logo-text {
   z-index: 999;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 6vh;
-  margin-right: 15vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -85,15 +79,19 @@ nav .navbar-logo .logo-text {
   line-height: 1.5rem;
 }
 
-nav .navbar-logo .logo-text h3 {
-  font-size: 2.7vw;
+nav .navbar-logo .logo-text h1 {
+  font-size: 2vw;
+  color: #FCF214;
+  font-weight: normal;
 }
 
-nav .navbar-logo .logo-text h5 {
-  font-size: 1.5vw;
+nav .navbar-logo .logo-text h2 {
+  font-size: 1.2vw;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  color: white;
+  font-weight: normal;
 }
 
 nav ul.links {
@@ -123,8 +121,9 @@ nav ul.links li {
 nav ul.links li a {
   text-decoration: none;
   font-size: 1.2rem;
-  font-weight: bolder;
-  color: black;
+  font-weight: normal;
+  color: white;
+  text-transform: uppercase;
 }
 
 nav ul.links li a::after {
@@ -194,7 +193,7 @@ main section#one .hero .main-picture-container {
 
 main section#one .hero .main-picture-container img {
   width: 100%;
-  height: 80%;
+  height: 60%;
 }
 
 main section#one .hero .left-sticker-container .left-side-sticker {
@@ -213,7 +212,7 @@ main section#one .hero .left-sticker-container .left-side-sticker {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  z-index: 999;
+  z-index: 996;
 }
 
 main section#one .hero .left-sticker-container .left-side-sticker .sticker-text {
