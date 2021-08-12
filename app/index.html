@@ -9,55 +9,107 @@
     <title>Tatuv Web</title>
 </head>
 <body>
-    <main>
-        <!-- Navbar start -->
-        <nav>
-            <div class="navbar-logo">
-                <div class="logo-over-polygon">
-                </div>
-                <div class="logo-border-polygon">
-                </div>
-                <div class="logo-text">
-                    <h1>T.D.</h1>
-                    <h2>Měření a Regulace</h2>
-                </div>
-                
+    <!-- Navbar PC start -->
+    <nav class="pc-nav">
+        <div class="navbar-logo">
+            <div class="logo-over-polygon">
             </div>
+            <div class="logo-border-polygon">
+            </div>
+            <div class="logo-text">
+                <h1>T.D.</h1>
+                <h2>Měření a Regulace</h2>
+            </div>
+            
+        </div>
+        <ul class="links">
+            <li class="home-link"><a href="#">Domů</a></li>
+            <li class="services-link"><a href="#">Služby</a></li>
+            <li class="about-link"><a href="#">O Mně</a></li>
+            <li class="contact-link"><a href="#">Kontakt</a></li>
+        </ul>
+        </nav>
+    <!-- Navbar end -->
+
+    <!-- Navbar section mobile start -->
+    <nav class="mobile-nav">
+        <div class="navbar-logo">
+            <div class="logo-over-polygon">
+            </div>
+            <div class="logo-border-polygon">
+            </div>
+            <div class="logo-text">
+                <h1>K.D.</h1>
+                <h2>Měření a Regulace</h2>
+            </div>
+        </div>
+
+        <div class="burger-menu-container">
+            <!-- Burger -->
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar" id="top"></span>
+                <span class="bar" id="mid"></span>
+                <span class="bar" id="bot"></span>
+            </div>
+        </div>
+        <div class="mobile-nav-links">
             <ul class="links">
                 <li class="home-link"><a href="#">Domů</a></li>
                 <li class="services-link"><a href="#">Služby</a></li>
-                <li class="prices-link"><a href="#">Ceník</a></li>
+                <li class="about-link"><a href="#">O Mně</a></li>
                 <li class="contact-link"><a href="#">Kontakt</a></li>
             </ul>
-        </nav>
-        <!-- Navbar end -->
-        <section id="one">
-            <div class="hero">
+        </div>
+    </nav>
 
-                <div class="left-sticker-container">
-                    <div class="left-side-sticker">
+    <!-- Navbar section mobile end-->
+
+    <main>
+        <section id="main-page">
+            <div class="hero">
+                <div class="main-picture-container">
+                    <div class="left-sticker-container">
                         <div class="sticker-text">
-                            <h1>Ing. Tomáš Dolejší</h1>
-                            <h4>Projektant MaR</h4>
+                            <h1>Ing. Kryštof Dolejší</h1>
+                            <h2>Projektant MaR</h2>
                         </div>
-                    </div>
-    
-                    <div class="bottom-button-sticker">
-                        <h2>Zjistit více</h2>
-                    </div>
-    
-                    <div class="main-picture-container">
-                        <img src="/static/images/schema_mar_06.jpg" alt="">
+                        <button class="hero-button">
+                            <h3>Kontaktujte Mě </h3>
+                        </button>
                     </div>
                 </div>
-                
+
+                <div class="hero-services-container">
+                    <div class="border-effect-polygon">
+                        <div class="offer-overlay-polygon">
+                            <h1>Co mohu nabídnout</h1>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aliquam 
+                            quas quo iste dicta, dolores ducimus nisi sint quam dolorem velit vel, 
+                            blanditiis voluptatem quidem quos explicabo! Sed, perferendis! 
+                            In nam dolores laudantium iste at ullam sit debitis aut animi repellat? 
+                            Id a nisi dicta!
+                        </p>
+                        <div class="border-button-polygon">
+                            <a href="#" class="services-button">Zjistit Více</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section  id="two">
+        <section  id="services-section-one">
             <div class="offered-services">
                 Nabízené Služby pt 1
-                <p class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laboriosam cumque earum quaerat laudantium atque?</p>
+                <p class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorum laboriosam cumque earum quaerat laudantium atque?
+                </p>
+
+                <div class="service-ilustration-images">
+                    <div class="faded-image-container">
+                        <img src="" alt="">
+                    </div>
+                </div>
                 <ul class="fade-in">
                     <div class="list-items">
                         <img src="./static/images/Bolt_noBG.svg" alt="" height="25px" width="25px">
@@ -73,7 +125,17 @@
                         <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
                         <li>ELektrika rulez</li>
                     </div>
+                    <p class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Dolorum laboriosam cumque earum quaerat laudantium atque?
+                    </p>
                 </ul>
+                
+                <div class="service-ilustration-images">
+                    <div class="faded-image-container">
+                        <img src="" alt="">
+                    </div>
+                </div>
+
                 <ul class="fade-in">
                     <li>Gege</li>
                     <li>Lulu</li>
@@ -82,16 +144,6 @@
                     <li>Guigo go</li>
                     <li>Lele Lu</li>
                 </ul>
-            </div>
-
-            <div class="service-ilustration-images">
-                <div class="service-image-container">
-                    <img src="" alt="">
-                </div>
-                
-                <div class="service-image-container">
-                    <img src="" alt="">
-                </div>
             </div>
 
         </section>
@@ -141,8 +193,33 @@
             O Mě
         </section>
 
-        <section  id="six">
-            Kontakt
+        <section  id="contact-section">
+            <div class="contact-layout">
+                <div class="contact-intro">
+                    <h1>Kontakt</h1>
+                    <p>Kontaktovat mě můžeme prostřednictvím formuláře, emailem, nebo mobilním telefonem.
+                        Na mobilním telefonu mě můžete zastihnout každý všední den od 8:00 do 18:00.
+                        V případě, že na mobilu nebudu zrovna dostupný můžete psát také SMS.
+                        <b>Tel: +420 606 625 737</b>
+                    </p>
+                </div>
+
+                <div class="contact-form-container">
+                    form
+                </div>
+
+                <div class="contact-details-container">
+                    <div class="img-container">
+                        <img src="/static/images/Man_drawing.png" alt="">
+                    </div>
+                    <div class="contact-details">
+                        <p class="underline">Ing. Tomáš Dolejší</p>
+                        <p>Tel: +420 606 625 737 | Po - Pá 8:00 - 18:00</p>
+                        <p>WhatsApp: +420 606 625 731</p>
+                        <p>Email: tomas.dolejsi@email.cz</p>
+                    </div>
+                </div>
+            </div>
         </section>
         <footer>
             <div class="footer-border">
@@ -156,7 +233,7 @@
                     <li class="underline">Ing. Tomáš Dolejší</li>
                     <li>Email: tomas.dolejsi@email.com</li>
                     <li>Tel: +420 606 625 731</li>
-                    <li>WhatsApp: +420 606 625 731 </li>
+                    <li>WhatsApp: +420 606 625 731</li>
                 </ul>
             </div>
             <div class="footer-navigation">
