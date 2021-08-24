@@ -1,4 +1,5 @@
 from flask import Flask
+from main import routes
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "000abcdefghijk123456000"
