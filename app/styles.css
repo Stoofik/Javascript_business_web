@@ -702,8 +702,8 @@ main section#services-section .offered-services ul.fade-in {
   opacity: 0;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  -webkit-transition: 1200ms ease-in;
-  transition: 1200ms ease-in;
+  -webkit-transition: 600ms ease-in;
+  transition: 600ms ease-in;
 }
 
 main section#services-section .offered-services ul.fade-in#advantages-list .list-items {
