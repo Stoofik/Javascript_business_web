@@ -1,2 +1,2 @@
 # Tomas_Dolejsi_Website
-Tatuv osobni web
+Web pro mého tátu, který začíná podnikat v oblasti měření a regulace.
