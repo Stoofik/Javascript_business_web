@@ -3,6 +3,7 @@ let burger = document.querySelector(".navbar-toggle");
 let mobileMenu = document.querySelector(".mobile-nav-links");
 let sections = document.querySelectorAll("section");
 let navbarLinks = document.querySelectorAll("ul.links");
+let navbarBackground = document.querySelector(".background-navbar-blur");
 
 //functions for opening and closing the Navbar menu
 //function to open menu by clicking burger
@@ -11,8 +12,15 @@ const toggleMenu = () => {
         mobileMenu.classList.toggle("mobile-nav-active");
     });
 };
-
 toggleMenu();
+
+const toggleMenuBackground = () => {
+    navbarBackground.addEventListener('click', function() {
+        mobileMenu.classList.remove("mobile-nav-active");
+    });
+};
+toggleMenuBackground();
+
 
 //function to close the menu when clicking elsewhere
 sections.forEach((section) => {
@@ -29,6 +37,7 @@ navbarLinks.forEach((link) => {
 });
 
 
+
 //==================================
 //Burger menu transformation effect
 //==================================
@@ -40,6 +49,13 @@ const burgerTransform = () => {
 
     //function to transform the burger when clicking the burger
     burger.addEventListener('click', function() {
+        topBar.classList.toggle("close");
+        midBar.classList.toggle("close");
+        botBar.classList.toggle("close");
+    });
+
+    //function to transform the burger when clicking elsewhere
+    navbarBackground.addEventListener('click', function() {
         topBar.classList.toggle("close");
         midBar.classList.toggle("close");
         botBar.classList.toggle("close");
@@ -65,6 +81,27 @@ const burgerTransform = () => {
     });
 }
 burgerTransform();
+
+//function to blur the background when navbar is activated
+const blurBackgroundMobile = () => {
+    burger.addEventListener("click", function() {
+        navbarBackground.classList.toggle("active");
+    });
+    
+    navbarBackground.addEventListener("click", function() {
+        navbarBackground.classList.remove("active");
+    });
+    
+    navbarLinks.forEach((link) => {
+        link.addEventListener("click", function() {
+            navbarBackground.classList.remove("active");
+        });
+    });
+};
+blurBackgroundMobile();
+
+
+
 //===========================================
 
 
@@ -73,10 +110,24 @@ const loadHero = () => {
     // selector All with for cycle used due to having two separate navbars, 
     // one for PC and one for mobile
     const navbarLogo = document.querySelectorAll(".navbar-logo");
+    console.log(navbarLogo);
+    //animation property
+    slideLogoAnimation = "transform: translateX(0%); opacity: 1";
 
     navbarLogo.forEach(logo => {
         window.addEventListener("load", function() {
-        logo.style.cssText = "transform: translateX(0%)";
+        logo.style.cssText = slideLogoAnimation;
+        });
+    });
+
+    //navbar burger
+    const navBurgerBars = document.querySelectorAll("span.bar");
+    //animation property
+    const appearBurgerProperties = "transform: translateY(0%); opacity: 1";
+
+    navBurgerBars.forEach(bar => {
+        window.addEventListener("load", function () {
+            bar.style.cssText = appearBurgerProperties;
         });
     });
 };
@@ -88,24 +139,37 @@ const loadIntroText = () => {
     //navbar links
     const homeLink = document.querySelector(".home-link");
     const servicesLink = document.querySelector(".services-link");
-    const aboutLink = document.querySelector(".about-link");
+    const pricesLink = document.querySelector(".prices-link");
     const contactLink = document.querySelector(".contact-link");
+    //animation property
+    const appearPropertyLinks = "transform: translateY(0%); opacity: 1";
 
-    setTimeout(function(){ homeLink.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1100);
-    setTimeout(function(){ servicesLink.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1200);
-    setTimeout(function(){ aboutLink.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1300);
-    setTimeout(function(){ contactLink.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1400);
+    setTimeout(function(){ homeLink.style.cssText = appearPropertyLinks; }, 1100);
+    setTimeout(function(){ servicesLink.style.cssText = appearPropertyLinks; }, 1200);
+    setTimeout(function(){ pricesLink.style.cssText = appearPropertyLinks; }, 1300);
+    setTimeout(function(){ contactLink.style.cssText = appearPropertyLinks; }, 1400);
 
     //main hero text
     const introTextH1 = document.querySelector(".sticker-text h1");
     const introTextH2 = document.querySelector(".sticker-text h2");
     const heroContactButton = document.querySelector(".hero-button h3");
+    //animation property
+    const appearPropertyIntro = "transform: translateY(0%); opacity: 1"
 
-    setTimeout(function(){ introTextH1.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1100);
-    setTimeout(function(){ introTextH2.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1200);
-    setTimeout(function(){ heroContactButton.style.cssText = "transform: translateY(0%); opacity: 1"; }, 1300);
+    setTimeout(function(){ introTextH1.style.cssText = appearPropertyIntro; }, 1100);
+    setTimeout(function(){ introTextH2.style.cssText = appearPropertyIntro; }, 1200);
+    setTimeout(function(){ heroContactButton.style.cssText = appearPropertyIntro; }, 1300);
+
+    //What can i offer text
+
+    const introOffer = document.querySelector(".offer-overlay-polygon h1");
+    const offerText = document.querySelector(".border-effect-polygon p");
+    const offerBtn = document.querySelector("a.services-button");
+
+    setTimeout(function(){ introOffer.style.cssText = appearPropertyIntro; }, 1350);
+    setTimeout(function(){ offerText.style.cssText = appearPropertyIntro; }, 1350);
+    setTimeout(function(){ offerBtn.style.cssText = appearPropertyIntro; }, 1400);
 };
-
 loadIntroText();
 
 // postupne zobrazeni textu pri scrollovani strankou
@@ -207,9 +271,10 @@ function smoothScroll(target, duration) {
 }
 
 //pridani scroll animace jednotlivym linkum
-const scrollToLink = () => {
-    let navbarHome = document.querySelectorAll(".home-link");
 
+const scrollToLink = () => {
+    //from navbar home link to home page
+    let navbarHome = document.querySelectorAll(".home-link");
 
     navbarHome.forEach((element) => {
         element.addEventListener('click', function() {
@@ -217,25 +282,25 @@ const scrollToLink = () => {
         });
     });
 
-    //from navbar services button to services
+    //from navbar services link to services page
     let navbarServices = document.querySelectorAll(".services-link");
 
     navbarServices.forEach((element) => {
         element.addEventListener('click', function() {
-            smoothScroll("section#services-section-one", 1000);
+            smoothScroll("section#services-section", 1000);
         });
     });
 
-    //from navbar about button to about
-    let navbarAbout = document.querySelectorAll(".about-link");
+    //from navbar prices link to prices page
+    let navbarPrices = document.querySelectorAll(".prices-link");
 
-    navbarAbout.forEach((element) => {
+    navbarPrices.forEach((element) => {
         element.addEventListener('click', function() {
-            smoothScroll("section#four", 1000);
+            smoothScroll("section#prices", 1000);
         });
     });
 
-    //from navbar contact button to contact
+    //from navbar contact link to contact page
     let navbarContact = document.querySelectorAll(".contact-link");
 
     navbarContact.forEach((element) => {
@@ -254,7 +319,7 @@ const scrollToLink = () => {
     let heroServicesButton = document.querySelector(".border-button-polygon");
 
     heroServicesButton.addEventListener("click", function() {
-        smoothScroll("section#two", 1000);
+        smoothScroll("section#services-section", 1000);
     });
 
     //from footer to main page
@@ -268,14 +333,14 @@ const scrollToLink = () => {
     let footerServicesBtn = document.querySelector(".back-services");
 
     footerServicesBtn.addEventListener("click", function () {
-        smoothScroll("section#services-section-one", 1000);
+        smoothScroll("section#services-section", 1000);
     });
 
     let footerPricesBtn = document.querySelector(".back-prices");
 
     //from footer to prices page
     footerPricesBtn.addEventListener("click", function () {
-        smoothScroll("section#four", 1000);
+        smoothScroll("section#prices", 1000);
     });
 
     //from footer to Contact page
@@ -288,5 +353,15 @@ const scrollToLink = () => {
 
 scrollToLink();
 
+//function to enlarge image when clicked (possibly not used?)
+
+// const enlargeImage = () => {
+//     smallImage = document.querySelectorAll(".faded-image-container");
+
+//     smallImage.forEach((image) => {
+//         console.log(image);
+//     });
+// };
+// enlargeImage();
 
 

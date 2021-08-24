@@ -25,13 +25,14 @@
         <ul class="links">
             <li class="home-link"><a href="#">Domů</a></li>
             <li class="services-link"><a href="#">Služby</a></li>
-            <li class="about-link"><a href="#">O Mně</a></li>
+            <li class="prices-link"><a href="#">Ceník</a></li>
             <li class="contact-link"><a href="#">Kontakt</a></li>
         </ul>
         </nav>
     <!-- Navbar end -->
 
     <!-- Navbar section mobile start -->
+    
     <nav class="mobile-nav">
         <div class="navbar-logo">
             <div class="logo-over-polygon">
@@ -56,10 +57,11 @@
             <ul class="links">
                 <li class="home-link"><a href="#">Domů</a></li>
                 <li class="services-link"><a href="#">Služby</a></li>
-                <li class="about-link"><a href="#">O Mně</a></li>
+                <li class="prices-link"><a href="#">Ceník</a></li>
                 <li class="contact-link"><a href="#">Kontakt</a></li>
             </ul>
         </div>
+        <div class="background-navbar-blur"></div>
     </nav>
 
     <!-- Navbar section mobile end-->
@@ -98,109 +100,149 @@
             </div>
         </section>
 
-        <section  id="services-section-one">
+        <section  id="services-section">
             <div class="offered-services">
-                Nabízené Služby pt 1
-                <p class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Dolorum laboriosam cumque earum quaerat laudantium atque?
+                <h1 class="fade-in">Nabízené služby</h1>
+                <p class="fade-in">Vytvářím kompletní řešení systémů měření a regulace. Pokrývám vše od
+                    úvodní analýzy objektu po vyhotovení samotného funčního návrhu pro danou stavbu.
+                    <span>Společně s externí firmou pak provádím a dozoruji realizaci tohoto systému dle přání
+                        zákazníka.
+                    </span>
                 </p>
-
-                <div class="service-ilustration-images">
-                    <div class="faded-image-container">
-                        <img src="" alt="">
-                    </div>
-                </div>
+                <h2 class="fade-in">K těmto činnostem patří zejména:</h2>
                 <ul class="fade-in">
                     <div class="list-items">
                         <img src="./static/images/Bolt_noBG.svg" alt="" height="25px" width="25px">
-                        <li>Oho</li>
+                        <li>Schéma návaznosti systémů MaR</li>
                     </div>
     
                     <div class="list-items">
                         <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
-                        <li>Haha hi</li>
+                        <li>Výkres funkčního propojení systému</li>
                     </div>
     
                     <div class="list-items">
                         <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
-                        <li>ELektrika rulez</li>
+                        <li>Popis jednotlivých komponent vč. nároků</li>
                     </div>
-                    <p class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Dolorum laboriosam cumque earum quaerat laudantium atque?
-                    </p>
+
+                    <div class="list-items">
+                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <li>Logické uspořádání a propojení dílčích celků systému</li>
+                    </div>
                 </ul>
+
+                <div class="service-ilustration-images">
+                    <div class="faded-image-container">
+                        <img src="/static/images/schema_mar_02.jpg" alt="">
+                    </div>
+                    <p class="fade-in">Třeba takto vypadá vyhotovený nákres systému měření a regulace pro
+                        obytnou budovu.
+                    </p>
+                </div>
+
+                <h3 class="fade-in">Co je to systém MaR?</h3>
+
+                <p class="fade-in">Systém měření a regulace zajišťuje komfortní a energeticky úsporný
+                    provoz budovy. Patří sem zejména <b>řízení tepla, průtoků vody, vzduchotechniky a klimatizace</b>
+                    atp. 
+                    <span>Kvalitní a dobře zpracovaný systém měření a regulace tedy dokáže zajistit <b>optimální
+                        a maximálně hospodárnou soustavu</b> pro výdaje energie v budově. Investovat do takového systému se
+                        vyplatí zejména z dlouhodobého hlediska.</span>
+                    <span>Nespornou výhodou nejnovějších systémů pak je <b>možnost regulace na dálku prostřednictvím
+                        chytrých aplikací</b>, díky kterým máte všechny potřebné informace neustále po ruce ve svém
+                        mobilním zařízení.
+                    </span>
+                </p>
                 
                 <div class="service-ilustration-images">
                     <div class="faded-image-container">
-                        <img src="" alt="">
+                        <img src="/static/images/MaR.jpg" alt="">
                     </div>
                 </div>
-
-                <ul class="fade-in">
-                    <li>Gege</li>
-                    <li>Lulu</li>
-                    <li>Papa</li>
-                    <li>Loro</li>
-                    <li>Guigo go</li>
-                    <li>Lele Lu</li>
+                <p class="fade-in"><span>Takto může vypadat jeden z možných ovladačů pro regulaci tepla v budově</span></p>
+                <h4>Mezi hlavní výhody moderního systému MaR patří:</h4>
+                <ul class="fade-in" id="advantages-list">
+                    <div class="list-items">
+                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <li>Možnost pečlivého rozplánování měřících a regulačních procesů. Zvolte si svůj
+                            plán výdajů a sledujte kroky potřebné k jeho plnění!
+                        </li>
+                    </div>
+                    <div class="list-items">
+                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <li>Přesný a aktuální přehled výdajů tepla, průtoků a maximální úspornost. Díky chytrému
+                            sledování ani koruna za energie na víc!
+                        </li>
+                    </div>
+                    <div class="list-items">
+                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <li>Možnost ovládání procesů přes chytrá zařízení na dálku. vyhřátá chata
+                            ještě před příjezdem? Žádný problém pomocí pár kliknutí!
+                        </li>
+                    </div>
+                    <div class="list-items">
+                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <li>Volba automatických sledování a regulace teploty v pokoji. Nastavte požadovanou
+                            teplotu a systém bude sám přítápět dle Vašeho přání!
+                        </li>
+                    </div>
                 </ul>
             </div>
 
         </section>
 
-        <section id="three">
-            Nabízené Služby pt 2
-
-        </section>
-
-        <section  id="four">
-            <table class="fade-in">
-                <h2>Ceník</h2>
-                <tr>
+        <section  id="prices">
+            <h2 class="fade-in">Ceník</h2>
+            <table>
+                <p class="fade-in">Cena jednotlivých návrhů a realizací se vždy liší v závilosti na rozsahu požadovaného systému.
+                    Není proto možné vždy předem určit pevnou cenu. Pro zjištění odhadované ceny mě neváhejte
+                    nezávazně kontaktovat.
+                    <span>Orientační ceny dle běžně prováděných návrhů a realizací je možné vyčíst z tabulky níže.
+                        Avšak přesnou konečnou cenu je možné stanovit až na základě domluvy.
+                    </span>
+                </p>
+                <tr class="fade-in">
                     <th>Druh práce</th>
                     <th class="price">Cena</th>
                 </tr>
-                <tr>
-                    <td>Instalace žárovky</td>
-                    <td class="price">300 kč</td>
+                <tr class="fade-in">
+                    <td>Nový projekt v novostavbě</td>
+                    <td class="price">3000 kč</td>
                 </tr>
-                <tr>
-                    <td>Instalace pračky</td>
-                    <td class="price">500 kč</td>
+                <tr class="fade-in">
+                    <td>Nový projekt při rekonstrukci</td>
+                    <td class="price">5000 kč</td>
                 </tr>
-                <tr>
-                    <td>Instalace žárovky</td>
-                    <td class="price">400 kč</td>
+                <tr class="fade-in">
+                    <td>Stavební dozor projektu</td>
+                    <td class="price">400 kč/hod</td>
                 </tr>
-                <tr>
-                    <td>Instalace žárovky</td>
+                <tr class="fade-in">
+                    <td>Revize systému</td>
                     <td class="price">700 kč</td>
                 </tr>
-                <tr>
-                    <td>Instalace žárovky</td>
+                <tr class="fade-in">
+                    <td>Instalace a zapojení systému</td>
                     <td class="price">1000 kč</td>
                 </tr>
-                <tr>
-                    <td>Instalace žárovky</td>
-                    <td class="price">300 kč</td>
+                <tr class="fade-in">
+                    <td>Servisní služby</td>
+                    <td class="price">300 kč/hod</td>
                 </tr>
             </table>
 
 
         </section>
 
-        <section  id="five">
-            O Mě
-        </section>
-
         <section  id="contact-section">
             <div class="contact-layout">
                 <div class="contact-intro">
                     <h1>Kontakt</h1>
-                    <p>Kontaktovat mě můžeme prostřednictvím formuláře, emailem, nebo mobilním telefonem.
-                        Na mobilním telefonu mě můžete zastihnout každý všední den od 8:00 do 18:00.
-                        V případě, že na mobilu nebudu zrovna dostupný můžete psát také SMS.
-                        <b>Tel: +420 606 625 737</b>
+                    <p>Kontaktovat mě můžeme prostřednictvím <b>formuláře níže</b>, <b>emailem</b>, nebo <b>mobilním telefonem</b>.
+                        <span>Na mobilním telefonu mě můžete zastihnout <b>každý všední den od 8:00 do 18:00</b>.</span>
+                        <span>V případě, že na mobilu nebudu zrovna dostupný můžete psát také SMS.</span>
+                        <span><b>Tel: +420 606 625 737</b></span>
                     </p>
                 </div>
 
@@ -241,7 +283,7 @@
                     <h3>Zpět na:</h3>
 
                     <ul class="back-to-links">
-                        <li class="back-main-page"><a href="#">Hlavní stránka</a></li>
+                        <li class="back-main-page"><a href="#">Hlavní stránku</a></li>
                         <li class="back-services"><a href="#">Služby</a></li>
                         <li class="back-prices"><a href="#">Ceník</a></li>
                         <li class="back-contact"><a href="#">Kontakt</a></li>
