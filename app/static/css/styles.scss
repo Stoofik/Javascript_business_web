@@ -753,7 +753,7 @@ main {
     }
 
     section#contact-section {
-        height: 160vh;
+        height: 200vh;
 
         .contact-layout {
             display: grid;
@@ -826,7 +826,74 @@ main {
                 grid-area: form;
                 height: 100%;
                 width: 100%;
-                background: red;
+
+                legend {
+                    padding-top: 1rem;
+                    font-size: 1.5rem;
+                    font-weight: bolder;
+                }
+
+                form {
+                    margin-top: 1.5rem;
+                    fieldset {
+                        border: none;
+
+                        .form-group {
+                            @include flexColumn(center);
+                            align-items: flex-start;
+
+                            .form-field-label {
+                                font-size: 1.1rem;
+                            }
+
+                            .small-form-field {
+                                width: 15rem;
+                                height: 1.75rem;
+                                border: 1px solid $mainBlue;
+                                border-radius: 5px;
+
+                                
+                                &:focus {
+                                    outline: none!important;
+                                    border: 2px solid $mainBlue;
+                                }
+
+                                &.error {
+                                    border: 1px solid red;
+                                }
+                            }
+
+                            .big-form-field {
+                                width: 15rem;
+                                height: 15rem;
+                                border: 1px solid $mainBlue;
+                                border-radius: 5px;
+
+                                &:focus {
+                                    outline: none!important;
+                                    border: 2px solid $mainBlue;
+                                }
+
+                                &.error {
+                                    border: 1px solid red;
+                                }
+                            }
+
+                            .invalid-feedback {
+                                color: red;
+                                padding-bottom: 0.5rem;
+                            }
+                        }
+
+                        input.form-btn {
+                            margin-top: 1rem;
+                            height: 2rem;
+                            width: 6rem;
+                            border: 1px solid $mainBlue;
+                            border-radius: 5px;
+                        }
+                    }
+                }
             }
         }
     }

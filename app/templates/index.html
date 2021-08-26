@@ -247,26 +247,54 @@
                 </div>
 
                 <div class="contact-form-container">
+                    <legend>Kontaktní formulář</legend>
                     <form method="POST" action="">
                         {{ form.hidden_tag() }}
-    
                         <fieldset>
                                 <div class="form-group">
                                     {{ form.name.label(class="form-field-label") }}
-                                    {{ form.name(class="small-form-field") }}
+                                    {% if form.name.errors %}
+                                    {{ form.name(class="small-form-field error", placeholder="Např. Jan Novák") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.name.errors %}
+                                                <small>{{ error }}</small>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.name(class="small-form-field", placeholder="Např. Jan Novák") }}
+                                    {% endif %}
                                 </div>
     
                                 <div class="form-group">
-                                    {{ form.email.label(class="form-field-label") }}
-                                    {{ form.email(class="small-form-field") }}
+                                    <div class="form-group">
+                                        {{ form.email.label(class="form-field-label") }}
+                                        {% if form.email.errors %}
+                                        {{ form.email(class="small-form-field error", placeholder="Např. Jan Novák") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.email.errors %}
+                                                    <small>{{ error }}</small>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.email(class="small-form-field", placeholder="Např. Jan Novák") }}
+                                        {% endif %}
+                                    </div>
                                 </div>
     
                                 <div class="form-group">
                                     {{ form.text.label(class="form-field-label") }}
-                                    {{ form.text(class="big-form-field") }}
+                                    {% if form.name.errors %}
+                                        {{ form.text(class="big-form-field error", placeholder="Zde vyplňte vaší zprávu, která mi bude odeslána na email. Maximální délka zprávy je 1000 znak.") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.text.errors %}
+                                                    <small>{{ error }}</small>
+                                                {% endfor %}
+                                            </div>
+                                    {% else %}
+                                        {{ form.text(class="big-form-field", placeholder="Zde vyplňte vaší zprávu, která mi bude odeslána na email. Maximální délka zprávy je 1000 znaků.") }}
+                                    {% endif %}
                                 </div>
-    
-                                <button><input class="btn" type="submit" value="Odeslat"></button>
+                                <input class="form-btn" type="submit" value="Odeslat">
                         </fieldset>
                     </form>
                 </div>
@@ -284,6 +312,7 @@
                 </div>
             </div>
         </section>
+
         <footer>
             <div class="footer-border"></div>
             <div class="about-owner">
@@ -320,5 +349,6 @@
     </main>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
 </body>
 </html>
