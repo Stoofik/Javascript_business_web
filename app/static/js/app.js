@@ -56,9 +56,9 @@ const burgerTransform = () => {
 
     //function to transform the burger when clicking elsewhere
     navbarBackground.addEventListener('click', function() {
-        topBar.classList.toggle("close");
-        midBar.classList.toggle("close");
-        botBar.classList.toggle("close");
+        topBar.classList.remove("close");
+        midBar.classList.remove("close");
+        botBar.classList.remove("close");
     });
 
     //function to transform the burger when clicking elsewhere
@@ -110,24 +110,12 @@ const loadHero = () => {
     // selector All with for cycle used due to having two separate navbars, 
     // one for PC and one for mobile
     const navbarLogo = document.querySelectorAll(".navbar-logo");
-    console.log(navbarLogo);
     //animation property
     slideLogoAnimation = "transform: translateX(0%); opacity: 1";
 
     navbarLogo.forEach(logo => {
         window.addEventListener("load", function() {
         logo.style.cssText = slideLogoAnimation;
-        });
-    });
-
-    //navbar burger
-    const navBurgerBars = document.querySelectorAll("span.bar");
-    //animation property
-    const appearBurgerProperties = "transform: translateY(0%); opacity: 1";
-
-    navBurgerBars.forEach(bar => {
-        window.addEventListener("load", function () {
-            bar.style.cssText = appearBurgerProperties;
         });
     });
 };

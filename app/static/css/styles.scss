@@ -120,7 +120,19 @@ section {
     transform: translateY(0%);
 }
 
+// setting up flashes
+.flashes {
+    width: 100%;
+    height: max-content;
+    font-size: 1rem;
+    text-align: center;
+}
 
+.flash-error {
+    padding: 0px 5px;
+    background: rgb(255, 230, 230);
+    color: red;
+}
 
 // **==========================**
 //      TABLE OF CONTENT - search to get to a specific part of CSS
@@ -245,21 +257,7 @@ nav.mobile-nav {
                 width: 30px;
                 background-color: white;
                 z-index: 1000;
-                transition-duration: 1000ms;
-
-                &#top {
-                    transform: translateY(-500%);
-                    opacity: 0;
-                }
-                
-                &#mid {
-                    opacity: 0; 
-                }
-                
-                &#bot {
-                    transform: translateY(500%);
-                    opacity: 0;
-                }
+                transition-duration: 400ms;
             }
 
             span.bar.close#top {
@@ -847,7 +845,7 @@ main {
                             }
 
                             .small-form-field {
-                                width: 15rem;
+                                width: 17rem;
                                 height: 1.75rem;
                                 border: 1px solid $mainBlue;
                                 border-radius: 5px;
@@ -856,6 +854,7 @@ main {
                                 &:focus {
                                     outline: none!important;
                                     border: 2px solid $mainBlue;
+                                    background: rgb(250, 255, 255);
                                 }
 
                                 &.error {
@@ -864,14 +863,15 @@ main {
                             }
 
                             .big-form-field {
-                                width: 15rem;
-                                height: 15rem;
+                                width: 17rem;
+                                height: 17rem;
                                 border: 1px solid $mainBlue;
                                 border-radius: 5px;
 
                                 &:focus {
                                     outline: none!important;
                                     border: 2px solid $mainBlue;
+                                    background: rgb(250, 255, 255);
                                 }
 
                                 &.error {
@@ -888,9 +888,13 @@ main {
                         input.form-btn {
                             margin-top: 1rem;
                             height: 2rem;
-                            width: 6rem;
-                            border: 1px solid $mainBlue;
+                            width: 6.5rem;
+                            border: 2px solid $mainBlue;
                             border-radius: 5px;
+                            background-color: $lightBlue;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            color: $drawingBlack;
                         }
                     }
                 }

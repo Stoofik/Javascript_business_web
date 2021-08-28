@@ -9,64 +9,9 @@
     <title>Ing. Tomáš Dolejší</title>
 </head>
 <body>
-    <!-- Navbar PC start -->
-    <nav class="pc-nav">
-        <div class="navbar-logo">
-            <div class="logo-over-polygon">
-            </div>
-            <div class="logo-border-polygon">
-            </div>
-            <div class="logo-text">
-                <h1>T.D.</h1>
-                <h2>Měření a Regulace</h2>
-            </div>
-            
-        </div>
-        <ul class="links">
-            <li class="home-link"><a href="#">Domů</a></li>
-            <li class="services-link"><a href="#">Služby</a></li>
-            <li class="prices-link"><a href="#">Ceník</a></li>
-            <li class="contact-link"><a href="#">Kontakt</a></li>
-        </ul>
-        </nav>
-    <!-- Navbar end -->
-
-    <!-- Navbar section mobile start -->
-    
-    <nav class="mobile-nav">
-        <div class="navbar-logo">
-            <div class="logo-over-polygon">
-            </div>
-            <div class="logo-border-polygon">
-            </div>
-            <div class="logo-text">
-                <h1>T.D.</h1>
-                <h2>Měření a Regulace</h2>
-            </div>
-        </div>
-
-        <div class="burger-menu-container">
-            <!-- Burger -->
-            <div class="navbar-toggle" id="mobile-menu">
-                <span class="bar" id="top"></span>
-                <span class="bar" id="mid"></span>
-                <span class="bar" id="bot"></span>
-            </div>
-        </div>
-        <div class="mobile-nav-links">
-            <ul class="links">
-                <li class="home-link"><a href="#">Domů</a></li>
-                <li class="services-link"><a href="#">Služby</a></li>
-                <li class="prices-link"><a href="#">Ceník</a></li>
-                <li class="contact-link"><a href="#">Kontakt</a></li>
-            </ul>
-        </div>
-        <div class="background-navbar-blur"></div>
-    </nav>
-
-    <!-- Navbar section mobile end-->
-
+    {% include "navbar.html" %}
     <main>
+        {% include "_messages.html" %}
         <section id="main-page">
             <div class="hero">
                 <div class="main-picture-container">
@@ -280,6 +225,22 @@
                                         {% endif %}
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        {{ form.subject.label(class="form-field-label") }}
+                                        {% if form.subject.errors %}
+                                        {{ form.subject(class="small-form-field error", placeholder="Např. Dotaz na cenu") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.subject.errors %}
+                                                    <small>{{ error }}</small>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.subject(class="small-form-field", placeholder="Např. Dotaz na cenu") }}
+                                        {% endif %}
+                                    </div>
+                                </div>
     
                                 <div class="form-group">
                                     {{ form.text.label(class="form-field-label") }}
@@ -312,40 +273,7 @@
                 </div>
             </div>
         </section>
-
-        <footer>
-            <div class="footer-border"></div>
-            <div class="about-owner">
-                <div class="footer-logo-container">
-                    <img src="" alt="">
-                </div>
-                <ul>
-                    <li class="underline">Ing. Tomáš Dolejší</li>
-                    <li>Email: tomas.dolejsi@email.com</li>
-                    <li>Tel: +420 606 625 731</li>
-                    <li>WhatsApp: +420 606 625 731</li>
-                </ul>
-            </div>
-            <div class="footer-navigation">
-                <div class="back-to-links-container">
-                    <h3>Zpět na:</h3>
-
-                    <ul class="back-to-links">
-                        <li class="back-main-page"><a href="#">Hlavní stránku</a></li>
-                        <li class="back-services"><a href="#">Služby</a></li>
-                        <li class="back-prices"><a href="#">Ceník</a></li>
-                        <li class="back-contact"><a href="#">Kontakt</a></li>
-                    </ul>
-                </div>
-
-                <div class="creator-contact">
-                    <div class="contact-text">
-                        <p>Tvorba webových stránek od: Kryštof</p>
-                        <a>KrystofWeby.cz</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {% include "footer.html" %}
     </main>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
