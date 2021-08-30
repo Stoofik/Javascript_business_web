@@ -1,0 +1,89 @@
+// Mixins
+
+//Animations
+@mixin textAppearAnimation {
+    opacity: 0;
+    transform: translateY(50%);
+    transition: 1s ease-in-out;
+}
+
+//Flex mixins
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexColumn($justify-content) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify-content;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin flexRow($justify-content) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify-content;
+    align-items: center;
+    align-content: center;
+}
+
+// Button mixins
+@mixin Btn {
+    height: 10vh;
+    width: 20vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FED957;
+    color: white;
+    text-shadow: 2px 2px black;;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+@mixin  BtnAfter {
+    content: "";
+    background: #FED957;
+    position: absolute;
+    top: 90%;;
+    left:0;
+    width: 100%;
+    height: 100%;
+    transform: perspective(3em) rotateX(30deg) scale(1.1, 1);
+    filter: blur(2em);
+    opacity: 0.5;
+}
+
+@mixin BtnAfterHover {
+    opacity: 1;
+    filter: blur(1em);
+}
+
+// Breakpoints mixins
+@media (min-width: 64em) {
+    // styles
+}
+// sm: 420px, med: 540px, lg: 1024px, xlg: 1400px
+$breakpoints-up: ("small": "26.25em", "medium": "33.75em", "large": "64em", "xlarge": "87.5em");
+
+// xsm: 419px,  small: 539px, med: 1023px, lg: 1399px
+$breakpoints-down: ("xsmall": "26.1875em", "small": "33.6875em", "medium": "63.9375em", "large": "87.4375em");
+
+@mixin breakpoint-up($size) {
+    @media (min-width: map-get($breakpoints-up, $size)) {
+        @content;
+    }
+}
+
+@mixin breakpoint-down($size) {
+    @media (max-width: map-get($breakpoints-down, $size)) {
+        @content;
+    }
+}

@@ -39,7 +39,7 @@ navbarLinks.forEach((link) => {
 
 
 //==================================
-//Burger menu transformation effect
+//Burger menu transformation effects
 //==================================
 const burgerTransform = () => {
     //variables
@@ -100,8 +100,8 @@ const blurBackgroundMobile = () => {
 };
 blurBackgroundMobile();
 
-
-
+//===========================================
+// End of Burger menu transformation effects //
 //===========================================
 
 

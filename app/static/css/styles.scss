@@ -1,155 +1,152 @@
-// Mixins
+@import "mixins";
+@import "variables";
+@import "globals";
 
-//Animations
-@mixin textAppearAnimation {
-    opacity: 0;
-    transform: translateY(50%);
-    transition: 1s ease-in-out;
-}
-
-//Flex mixins
-@mixin flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@mixin flexColumn($justify-content) {
-    display: flex;
-    flex-direction: column;
-    justify-content: $justify-content;
-    align-items: center;
-    align-content: center;
-}
-
-@mixin flexRow($justify-content) {
-    display: flex;
-    flex-direction: row;
-    justify-content: $justify-content;
-    align-items: center;
-    align-content: center;
-}
-
-// Button mixins
-@mixin Btn {
-    height: 10vh;
-    width: 20vw;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #FED957;
-    color: white;
-    text-shadow: 2px 2px black;;
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: bold;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-@mixin  BtnAfter {
-    content: "";
-    background: #FED957;
-    position: absolute;
-    top: 90%;;
-    left:0;
-    width: 100%;
-    height: 100%;
-    transform: perspective(3em) rotateX(30deg) scale(1.1, 1);
-    filter: blur(2em);
-    opacity: 0.5;
-}
-
-@mixin BtnAfterHover {
-    opacity: 1;
-    filter: blur(1em);
-}
-
-
-// Variables
-$mainBlue: #103E6C;
-$mainYellow: #FCF214;
-$drawingBlack: #212830;
-$mainGrey: #F5F5F5;
-$lightBlue: #CCF3FF;
-
-$marginSidesMobile: 20px;
-$heroMargin: 3vw;
-
-
-// global variables
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: serif;
-}
-
-body {
-    background: $mainGrey;
-}
-
-a {
-    text-decoration: none;
-    color: $drawingBlack;
-}
-
-h2, h3, h4 {
-    font-size: 1.15rem;
-    padding: 0.6rem 0px;
-    transition: 1300ms ease-in;
-}
-
-h3 {
-    margin-top: 1rem;
-}
-
-section {
-    background: $mainGrey;
-}
-
-
-//fade animace textu pri scrollovani
-.fade-in {
-    @include textAppearAnimation();
-}
-
-.fade-in.appear {
-    opacity: 1;
-    transform: translateY(0%);
-}
-
-// setting up flashes
-.flashes {
-    width: 100%;
-    height: max-content;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.flash-error {
-    padding: 0px 5px;
-    background: rgb(255, 230, 230);
-    color: red;
-}
 
 // **==========================**
 //      TABLE OF CONTENT - search to get to a specific part of CSS
-//          1. Navbar
+//          0. PC Navbar
+//              0.a Links
+//
+//          1. Mobile Navbar
 //              1.a Logo container and logo settings
-//              2.a Links
+//              1.b Burger menu
+//              1.c Links
 //
 //          2. Hero section
+//              2.a Hero left side
+//                  2.a.1 Hero button
+//              2.b Hero services container
+//                  2.b.1 Hero services button
+//
+//          3. Offered services section
+//              3.a Offered services intro text
+//              3.b Offered services list styling
+//              3.c Offered services illustration images
+//
+//          4. Prices section
+//              4.a Table of prices
+//
+//          5. Contact section
+//              5.a Contact section layout
+//                  5.a.1 Contact introduction text
+//                  5.a.2 Contact person details
+//              5.b Contact form container
+//                  5.b.2 Contact form
+//                      5.b.2.1 Contact form input button
+//
+//          6. Footer
 //              
 //          
 // **==========================**
 
-// 1. Navbar
 
-
+// 0. PC Navbar
 nav.pc-nav {
-    display: none;
+    @include breakpoint-down(medium) {
+        display: none;
+    }
+
+    position: fixed;
+    top: 0;
+    height: 8vh;
+    display: flex;
+    background: $mainBlue;
+    z-index: 997;
+    width: 100%;
+    border-bottom: 1px solid $mainGrey;
+
+    .navbar-logo {
+        flex: 1;
+        height: 100%;
+        width: 100%;
+        background: $mainBlue;
+        position: relative;
+        @include flexCenter();
+
+        .logo-over-polygon {
+            position: absolute;
+            background: $mainBlue;
+            height: 3vh;
+            width: 6rem;
+            z-index: 998;
+            top:0;
+        }
+
+        .logo-border-polygon {
+            position: absolute;
+            margin-top: 5px;
+            height: 6vh;
+            width: 15vw;
+            border: 2px solid $mainGrey;
+            @include flexCenter();
+        }
+
+        .logo-text {
+            text-align: center;
+            z-index: 999;
+            @include flexCenter();
+            flex-direction: column;
+            line-height: 1.5rem;
+            margin-top: -5px;
+
+            h1 {
+                font-size: 2rem;
+                color:$mainYellow;
+                font-weight: normal;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                width: max-content;
+                color: $mainGrey;
+                font-weight: normal;
+            }
+
+        }
+    }
+
+    // 0.a Links
+    ul.links {
+        flex: 2;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        li {
+            position: relative;
+            width: max-content;
+            list-style: none;
+            @include textAppearAnimation();
+            
+            a {
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                color: $mainGrey;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 0.1rem;
+                    width: 100%;
+                    opacity: 0;
+                    transform: translateX(-50%);
+                    transition:250ms ease-in;
+                }
+
+                &:hover::after {
+                    content: "";
+                    background: $mainGrey;
+                    width: 100%;
+                    opacity: 1;
+                    transform: translateX(0%);
+                }
+            }
+        }
+    }
 }
 
 .background-navbar-blur {
@@ -174,6 +171,10 @@ nav.pc-nav {
 }
 
 nav.mobile-nav {
+    @include breakpoint-up(large) {
+        display: none;
+    }
+
     position: fixed;
     height: 10vh;
     display: flex;
@@ -198,19 +199,31 @@ nav.mobile-nav {
         .logo-over-polygon {
             position: absolute;
             background: $mainBlue;
-            height: 5vh;
+            height: 2rem;
             width: 4rem;
             z-index: 998;
             top:0;
+
+            // media query for 420px and up
+            @include breakpoint-up(small) {
+                height: 3rem;
+                width: 5rem;
+            }
         }
 
         .logo-border-polygon {
             position: absolute;
-            margin-top: 5px;
-            height: 6.5vh;
+            margin-top: 0.7rem;
+            height: 2.5rem;
             width: 9rem;
             border: 2px solid $mainGrey;
             @include flexCenter();
+
+            // media query for 420px and up
+            @include breakpoint-up(small) {
+                height: 3rem;
+                width: 12rem;
+            }
         }
 
         .logo-text {
@@ -219,12 +232,21 @@ nav.mobile-nav {
             @include flexCenter();
             flex-direction: column;
             line-height: 1.5rem;
-            margin-top: -5px;
+
+            // media query for 420px and up
+            @include breakpoint-up(small) {
+                line-height: 2rem;
+            }
 
             h1 {
                 font-size: 1.8rem;
                 color:$mainYellow;
                 font-weight: normal;
+
+                // media query for 420px and up
+                @include breakpoint-up(small) {
+                    font-size: 2.1rem;
+                }
             }
 
             h2 {
@@ -233,12 +255,17 @@ nav.mobile-nav {
                 color: $mainGrey;
                 font-weight: normal;
                 padding: 0px;
+
+                // media query for 420px and up
+                @include breakpoint-up(small) {
+                    font-size: 1.2rem
+                }
             }
         }
     }
 
 
-    // Burger menu below
+    // 1.b Burger menu below
     .burger-menu-container {
         flex: 1;
         background: $mainBlue;
@@ -278,7 +305,7 @@ nav.mobile-nav {
         }
     }
 
-    // 2.a Links
+    // 1.c Links
     .mobile-nav-links {
         position: absolute;
         height: 50vh;
@@ -325,7 +352,7 @@ main {
     section#main-page {
         padding-top: 0px;
         height: 92vh;
-
+        // 2. Hero section
         .hero {
             height: 100%;
 
@@ -336,7 +363,7 @@ main {
                 background-image: url("/static/images/Intro_page_1.jpg");
                 background-repeat: no-repeat;
             }
-
+            // 2.a Hero left side
             .left-sticker-container {
                 height: 100%;
                 width: 55%;
@@ -346,11 +373,15 @@ main {
                 .sticker-text {
                     @include flexCenter();
                     flex-direction: column;
+                    
+                    // media query for 540px up
+                    @include breakpoint-up(medium) {
+                        width: 45%;
+                    }
 
                     h1 {
                         color: $mainGrey;
                         text-shadow: 1px 1px black;
-                        -webkit-text-stroke: 0.5px black;
                         font-weight: 900;
                         font-size: 1.8rem;
                         padding: 0;
@@ -361,7 +392,6 @@ main {
                     h2 {
                         color: $mainGrey;
                         text-shadow: 1px 1px black;
-                        -webkit-text-stroke: 0.5px black;
                         font-size: 1.5rem;
                         padding: 0;
                         font-weight: 800;
@@ -369,7 +399,7 @@ main {
                         @include textAppearAnimation();
                     }
                 }
-
+                // 2.a.1 Hero button
                 button.hero-button {
                     height: 3rem;
                     width: 10rem;
@@ -447,8 +477,14 @@ main {
                         margin: 0px;
                     }
                 }
-            }
 
+                //media query for 540px up
+                //.left-sticker-container
+                @include breakpoint-up(medium) {
+                    width: 45%;
+                }
+            }
+            // 2.b Hero services
             .hero-services-container {
                 height: 40%;
                 width: 100%;
@@ -485,7 +521,7 @@ main {
                             @include textAppearAnimation();
                         }
                     }
-
+                    // 2.b.1 Hero services button
                     .border-button-polygon {
                         position: absolute;
                         bottom: -1.25rem;
@@ -564,14 +600,16 @@ main {
             }
         }
     }
-    
+
+    // 3. Offered services section
     section#services-section {
-        min-height: 280vh;
+        min-height: max-content;
         @include flexColumn(center);
 
+        // 3.a Offered services into text
         .offered-services {
             flex: 1;
-            padding: 2rem 0.5rem;
+            padding: 1rem 0.5rem 0.5rem 0.5rem;
 
             h1 {
                 font-size: 1.8rem;
@@ -595,7 +633,7 @@ main {
                     display: block;
                 }
             }
-
+            // 3.b Offered services list styling
             ul.fade-in {
                 opacity: 0;
                 transform: translateX(-50%);
@@ -659,7 +697,7 @@ main {
 
 
         }
-
+        // 3.c Offered services illustration images
         .service-ilustration-images {
             flex: 1;
             @include flexCenter();
@@ -686,9 +724,9 @@ main {
         }
     }
     
-    
+    // 4. Prices section
     section#prices {
-        height: 90vh;
+        height: max-content;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
@@ -704,7 +742,7 @@ main {
         p {
             padding-bottom: 0.5rem;
         }
-
+        // 4.a Table of prices
         table {
             width: 100%;
             border-collapse: collapse;
@@ -749,10 +787,10 @@ main {
             }
         }
     }
-
+    // 5. Contact section
     section#contact-section {
-        height: 200vh;
-
+        height: max-content;
+        // 5.a Contact section layout
         .contact-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -762,7 +800,7 @@ main {
             "detail detail"
             "form form";
             padding: 0px 0.5rem;
-
+            // 5.a.1 Contact introduction
             .contact-intro {
                 grid-area: intro;
 
@@ -782,7 +820,7 @@ main {
                     }
                 }
             }
-
+            // 5.a.2 Contact person details
             .contact-details-container {
                 grid-area: detail;
                 height: 100%;
@@ -819,7 +857,7 @@ main {
                     }
                 }
             }
-
+            // 5.b Contact form container
             .contact-form-container {
                 grid-area: form;
                 height: 100%;
@@ -830,11 +868,12 @@ main {
                     font-size: 1.5rem;
                     font-weight: bolder;
                 }
-
+                // 5.b.2 Contact form
                 form {
                     margin-top: 1.5rem;
                     fieldset {
                         border: none;
+                        padding-bottom: 2rem;
 
                         .form-group {
                             @include flexColumn(center);
@@ -884,7 +923,7 @@ main {
                                 padding-bottom: 0.5rem;
                             }
                         }
-
+                        // 5.b.2.1 Contact form input button
                         input.form-btn {
                             margin-top: 1rem;
                             height: 2rem;
@@ -901,7 +940,7 @@ main {
             }
         }
     }
-
+    // 6. Footer
     footer {
         height: 40vh;
         padding: 0px 0.5rem;
@@ -1053,113 +1092,6 @@ main {
 }
 
 @media only screen and (min-width: 1024px) {
-    nav.mobile-nav {
-        display: none;
-    }
-
-    nav.pc-nav {
-        position: fixed;
-        top: 0;
-        height: 8vh;
-        display: flex;
-        background: $mainBlue;
-        z-index: 997;
-        width: 100%;
-        border-bottom: 1px solid $mainGrey;
-
-        .navbar-logo {
-            flex: 1;
-            height: 100%;
-            width: 100%;
-            background: $mainBlue;
-            position: relative;
-            @include flexCenter();
-    
-            .logo-over-polygon {
-                position: absolute;
-                background: $mainBlue;
-                height: 3vh;
-                width: 6rem;
-                z-index: 998;
-                top:0;
-            }
-    
-            .logo-border-polygon {
-                position: absolute;
-                margin-top: 5px;
-                height: 6vh;
-                width: 15vw;
-                border: 2px solid $mainGrey;
-                @include flexCenter();
-            }
-    
-            .logo-text {
-                text-align: center;
-                z-index: 999;
-                @include flexCenter();
-                flex-direction: column;
-                line-height: 1.5rem;
-                margin-top: -5px;
-    
-                h1 {
-                    font-size: 2rem;
-                    color:$mainYellow;
-                    font-weight: normal;
-                }
-    
-                h2 {
-                    font-size: 1.2rem;
-                    width: max-content;
-                    color: $mainGrey;
-                    font-weight: normal;
-                }
-    
-            }
-        }
-
-        // 2.a Links
-        ul.links {
-            flex: 2;
-            width: 100%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-
-            li {
-                position: relative;
-                width: max-content;
-                list-style: none;
-                @include textAppearAnimation();
-                
-                a {
-                    font-size: 1.2rem;
-                    text-transform: uppercase;
-                    color: $mainGrey;
-
-                    &::after {
-                        content: "";
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        height: 0.1rem;
-                        width: 100%;
-                        opacity: 0;
-                        transform: translateX(-50%);
-                        transition:250ms ease-in;
-                    }
-    
-                    &:hover::after {
-                        content: "";
-                        background: $mainGrey;
-                        width: 100%;
-                        opacity: 1;
-                        transform: translateX(0%);
-                    }
-                }
-            }
-        }
-    }
-
     main {
         padding-top: 8vh;
 

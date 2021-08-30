@@ -1,0 +1,59 @@
+// global variables
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    background: $mainGrey;
+}
+
+a {
+    text-decoration: none;
+    color: $drawingBlack;
+}
+
+h2, h3, h4 {
+    font-size: 1.15rem;
+    padding: 0.6rem 0px;
+    transition: 1300ms ease-in;
+}
+
+h3 {
+    margin-top: 1rem;
+}
+
+section {
+    background: $mainGrey;
+}
+
+
+//fade animace textu pri scrollovani
+.fade-in {
+    @include textAppearAnimation();
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+// setting up flashes
+.flashes {
+    width: 100%;
+    height: max-content;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.flash-error {
+    padding: 0px 5px;
+    background: rgb(255, 230, 230);
+    color: red;
+}
