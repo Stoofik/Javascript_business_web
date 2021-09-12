@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=-1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>Ing. Tomáš Dolejší</title>
@@ -14,28 +14,44 @@
         {% include "_messages.html" %}
         <section id="main-page">
             <div class="hero">
-                <div class="main-picture-container">
-                    <div class="left-sticker-container">
+                <div class="hero-intro">
+                    <div class="sticker-container">
                         <div class="sticker-text">
                             <h1>Ing. Tomáš Dolejší</h1>
                             <h2>Projektant MaR</h2>
+                            <button class="hero-button">
+                                <h3>Kontaktujte Mě </h3>
+                                <span class="top-border"></span>
+                                <span class="right-border"></span>
+                                <span class="bottom-border"></span>
+                                <span class="left-border"></span>
+                            </button>
                         </div>
-                        <button class="hero-button">
-                            <h3>Kontaktujte Mě </h3>
-                        </button>
+                    </div>
+                    <div class="main-picture-container">
+                        <div class="img-wrapper">
+                            <div class="img-slider">
+                                <div class="img-slider-container">
+                                    <img src="/static/images/MaR_ilustacni_obr_1.jpg" alt="">
+                                    <img src="/static/images/MaR_ilustacni_obr_2.jpg" alt="">
+                                    <img src="/static/images/MaR_ilustacni_obr_3.jpg" alt="">
+                                    <img src="/static/images/MaR_ilustacni_obr_4.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="img-overlay-polygon"></div>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="hero-services-container">
                     <div class="border-effect-polygon">
                         <div class="offer-overlay-polygon">
                             <h1>Co mohu nabídnout</h1>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aliquam 
-                            quas quo iste dicta, dolores ducimus nisi sint quam dolorem velit vel, 
-                            blanditiis voluptatem quidem quos explicabo! Sed, perferendis! 
-                            In nam dolores laudantium iste at ullam sit debitis aut animi repellat? 
-                            Id a nisi dicta!
+                        <p>Jsem projektantem se zaměřením na systémy měření a regulace v obytných budovách. V oboru mám praxi již 25 let
+                            a za tuto dobu jsem nasbíral cenné zkušenosti s prací jak na menších tak rozsáhlých projektech. 
+                            Projektoval jsem systémy MaR například pro Českou Národní banku, ZOO Praha, Škodu Mladou Boleslav a mnoho dalších.
                         </p>
                         <div class="border-button-polygon">
                             <a href="#" class="services-button">Zjistit Více</a>
@@ -86,7 +102,7 @@
                     </p>
                 </div>
 
-                <h3 class="fade-in">Co je to systém MaR?</h3>
+                <h3 class="fade-in">Proč investovat do moderního systému MaR?</h3>
 
                 <p class="fade-in">Systém měření a regulace zajišťuje komfortní a energeticky úsporný
                     provoz budovy. Patří sem zejména <b>řízení tepla, průtoků vody, vzduchotechniky a klimatizace</b>
@@ -109,25 +125,25 @@
                 <h4>Mezi hlavní výhody moderního systému MaR patří:</h4>
                 <ul class="fade-in" id="advantages-list">
                     <div class="list-items">
-                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <img src="./static/images/Bolt_noBG.svg" alt="">
                         <li>Možnost pečlivého rozplánování měřících a regulačních procesů. Zvolte si svůj
                             plán výdajů a sledujte kroky potřebné k jeho plnění!
                         </li>
                     </div>
                     <div class="list-items">
-                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <img src="./static/images/Bolt_noBG.svg" alt="">
                         <li>Přesný a aktuální přehled výdajů tepla, průtoků a maximální úspornost. Díky chytrému
                             sledování ani koruna za energie na víc!
                         </li>
                     </div>
                     <div class="list-items">
-                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <img src="./static/images/Bolt_noBG.svg" alt="">
                         <li>Možnost ovládání procesů přes chytrá zařízení na dálku. vyhřátá chata
                             ještě před příjezdem? Žádný problém pomocí pár kliknutí!
                         </li>
                     </div>
                     <div class="list-items">
-                        <img src="./static/images/Bolt_noBG.svg" alt=""  height="25px" width="25px">
+                        <img src="./static/images/Bolt_noBG.svg" alt="">
                         <li>Volba automatických sledování a regulace teploty v pokoji. Nastavte požadovanou
                             teplotu a systém bude sám přítápět dle Vašeho přání!
                         </li>
@@ -138,7 +154,7 @@
         </section>
 
         <section  id="prices">
-            <h2 class="fade-in">Ceník</h2>
+            <h1 class="fade-in">Ceník</h1>
             <table>
                 <p class="fade-in">Cena jednotlivých návrhů a realizací se vždy liší v závilosti na rozsahu požadovaného systému.
                     Není proto možné vždy předem určit pevnou cenu. Pro zjištění odhadované ceny mě neváhejte
@@ -221,7 +237,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
-                                            {{ form.email(class="small-form-field", placeholder="Např. Jan Novák") }}
+                                            {{ form.email(class="small-form-field", placeholder="Např. jan.novak@email.cz") }}
                                         {% endif %}
                                     </div>
                                 </div>

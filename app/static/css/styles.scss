@@ -49,7 +49,7 @@ nav.pc-nav {
 
     position: fixed;
     top: 0;
-    height: 8vh;
+    height: 10vh;
     display: flex;
     background: $mainBlue;
     z-index: 997;
@@ -63,11 +63,14 @@ nav.pc-nav {
         background: $mainBlue;
         position: relative;
         @include flexCenter();
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: 1000ms ease-in-out;
 
         .logo-over-polygon {
             position: absolute;
             background: $mainBlue;
-            height: 3vh;
+            height: 3rem;
             width: 6rem;
             z-index: 998;
             top:0;
@@ -101,6 +104,10 @@ nav.pc-nav {
                 width: max-content;
                 color: $mainGrey;
                 font-weight: normal;
+
+                @include breakpoint-up(large) {
+                    padding: 0.4rem 0px;
+                }
             }
 
         }
@@ -115,7 +122,6 @@ nav.pc-nav {
         align-items: center;
 
         li {
-            position: relative;
             width: max-content;
             list-style: none;
             @include textAppearAnimation();
@@ -124,25 +130,19 @@ nav.pc-nav {
                 font-size: 1.2rem;
                 text-transform: uppercase;
                 color: $mainGrey;
+                position: relative;
+
+                @include breakpoint-up(xlarge) {
+                    font-size: 1.3rem;
+                }
 
                 &::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    height: 0.1rem;
-                    width: 100%;
-                    opacity: 0;
-                    transform: translateX(-50%);
-                    transition:250ms ease-in;
+                    @include underTextAnimation();
                 }
 
                 &:hover::after {
-                    content: "";
-                    background: $mainGrey;
                     width: 100%;
-                    opacity: 1;
-                    transform: translateX(0%);
+                    left: 0;
                 }
             }
         }
@@ -171,10 +171,6 @@ nav.pc-nav {
 }
 
 nav.mobile-nav {
-    @include breakpoint-up(large) {
-        display: none;
-    }
-
     position: fixed;
     height: 10vh;
     display: flex;
@@ -182,6 +178,10 @@ nav.mobile-nav {
     z-index: 1001;
     width: 100%;
     border-bottom: 1px solid $mainGrey;
+
+    @include breakpoint-up(large) {
+        display: none;
+    }
 
     //1.a
     .navbar-logo {
@@ -219,7 +219,7 @@ nav.mobile-nav {
             border: 2px solid $mainGrey;
             @include flexCenter();
 
-            // media query for 420px and up
+            // media query for 420px up - bigger than small mobile device
             @include breakpoint-up(small) {
                 height: 3rem;
                 width: 12rem;
@@ -233,7 +233,7 @@ nav.mobile-nav {
             flex-direction: column;
             line-height: 1.5rem;
 
-            // media query for 420px and up
+            // media query for 420px up - bigger than small mobile device
             @include breakpoint-up(small) {
                 line-height: 2rem;
             }
@@ -243,7 +243,7 @@ nav.mobile-nav {
                 color:$mainYellow;
                 font-weight: normal;
 
-                // media query for 420px and up
+                // media query for 420px up - bigger than small mobile device
                 @include breakpoint-up(small) {
                     font-size: 2.1rem;
                 }
@@ -256,7 +256,7 @@ nav.mobile-nav {
                 font-weight: normal;
                 padding: 0px;
 
-                // media query for 420px and up
+                // media query for 420px up - bigger than small mobile device
                 @include breakpoint-up(small) {
                     font-size: 1.2rem
                 }
@@ -351,145 +351,318 @@ main {
 
     section#main-page {
         padding-top: 0px;
-        height: 92vh;
+        height: 90vh;
+
         // 2. Hero section
         .hero {
-            height: 100%;
+            height: 70%;
 
-            .main-picture-container {
-                height: 50%;
-                background-size: cover;
-                width: 100%;
-                background-image: url("/static/images/Intro_page_1.jpg");
-                background-repeat: no-repeat;
-            }
-            // 2.a Hero left side
-            .left-sticker-container {
+            .hero-intro {
                 height: 100%;
-                width: 55%;
-                @include flexCenter();
-                flex-direction: column;
+                position: relative;
 
-                .sticker-text {
-                    @include flexCenter();
-                    flex-direction: column;
-                    
-                    // media query for 540px up
-                    @include breakpoint-up(medium) {
-                        width: 45%;
-                    }
-
-                    h1 {
-                        color: $mainGrey;
-                        text-shadow: 1px 1px black;
-                        font-weight: 900;
-                        font-size: 1.8rem;
-                        padding: 0;
-                        text-align: center;
-                        @include textAppearAnimation();
-                    }
-    
-                    h2 {
-                        color: $mainGrey;
-                        text-shadow: 1px 1px black;
-                        font-size: 1.5rem;
-                        padding: 0;
-                        font-weight: 800;
-                        text-align: center;
-                        @include textAppearAnimation();
-                    }
+                @include breakpoint-down(xsmall) {
+                    height: 90%;
                 }
-                // 2.a.1 Hero button
-                button.hero-button {
-                    height: 3rem;
-                    width: 10rem;
-                    padding: 0;
-                    background: $mainGrey;
-                    border: 0;
-                    margin: 1rem 0px;
-                    @include flexCenter();
-                    cursor: pointer;
-                    position: relative;
-                    vertical-align: middle;
-                    box-sizing: border-box;
-                    transition: color 0.25s;
-                    box-shadow: inset 0 0 0 2px $mainBlue;
 
-                    &::before,
-                    &::after {
-                        box-sizing: inherit;
-                        content: '';
-                        position: absolute;
+                .main-picture-container {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    .img-wrapper {
+                        position: relative;
                         width: 100%;
                         height: 100%;
-                    }
 
-                    &::before,
-                    &::after {
-                        border: 2px solid transparent;
-                        width: 0;
-                        height: 0;
-                    }
+                        .img-slider {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
 
-                    &::before {
-                        top: 0;
-                        left: 0;
-                    }
+                            .img-slider-container {
+                                position: relative;
+                                width: 100%;
+                                height: 100%;
+                                background: black;
 
-                    &::after {
-                        bottom: 0;
-                        right: 0;
-                    }
-
-                    &:hover {
-                        color: $mainYellow;
-                        background: $lightBlue;
-                        transition: 1s ease-out;
-                    }
-
-                    &:hover::before,
-                    &:hover::after {
-                        width: 100%;
-                        height: 100%;
-                    }
-
-                    &:hover::before {
-                        border-top-color: $mainYellow;
-                        border-right-color: $mainYellow;
-                        transition: width 0.25s ease-out,
-                            height 0.25s ease-out 0.25s;
-                    }
-
-                    &:hover::after {
-                        border-bottom-color: $mainYellow;
-                        border-left-color: $mainYellow;
-                        transition: border-color 0s ease-out 0.5s, 
-                            width 0.25s ease-out 0.5s,
-                            height 0.25s ease-out 0.75s;
-                        
+                                img {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    // object-fit: cover;
+                                    opacity: 0;
+                                    transition: opacity 1s ease-in-out;
+                                }
+                            }
                         }
-    
-                    h3 {
-                        color: $drawingBlack;
-                        font-weight: 700;
-                        font-size: 1.2rem;
-                        @include textAppearAnimation();
-                        margin: 0px;
+
+                        .img-overlay-polygon {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(66, 66, 66, 0.5);
+                        }
                     }
                 }
 
-                //media query for 540px up
-                //.left-sticker-container
-                @include breakpoint-up(medium) {
-                    width: 45%;
+                // 2.a Hero text container
+                .sticker-container {
+                    position: absolute;
+                    background: rgba(0, 0, 0, 0.7);
+                    left: 50%;
+                    top: 40%;
+                    margin-left: -130px;
+                    width: max-content;
+                    height: max-content;
+                    padding: 1rem;
+                    flex-direction: column;
+                    @include flexCenter();
+                    z-index: 990;
+
+                    @include breakpoint-up(small) {
+                        margin-left: -143px;
+                    }
+
+                    @include breakpoint-up(medium) {
+                        margin-left: -155px;
+                    }
+
+                    @include breakpoint-up(large) {
+                        margin-left: -206px;
+                    }
+
+                    .sticker-text {
+                        @include flexCenter();
+                        flex-direction: column;
+
+                        h1 {
+                            color: white;
+                            text-shadow: 1px 1px black;
+                            font-weight: 900;
+                            font-size: 1.8rem;
+                            // padding: 0px 0px 1rem 0px;
+                            text-align: center;
+                            @include textAppearAnimation();
+
+                            // media query for 520px up - bigger than small mobile device
+                            @include breakpoint-up(small) {
+                                font-size: 2rem;
+                            }
+
+                            // media query for 740px up - smaller tablet device
+                            @include breakpoint-up(medium) {
+                                font-size: 2.2rem;
+                            }
+
+                            // media query for 1024px up - tablet device
+                            @include breakpoint-up(large) {
+                                font-size: 3rem;
+                            }
+                        }
+        
+                        h2 {
+                            color: white;
+                            text-shadow: 1px 1px black;
+                            font-size: 1.5rem;
+                            padding: 0;
+                            font-weight: 800;
+                            text-align: center;
+                            @include textAppearAnimation();
+
+                            // media query for 520px up - bigger than small mobile device
+                            @include breakpoint-up(small) {
+                                font-size: 1.8rem;
+                            }
+
+                            // media query for 740px up - smaller tablet device
+                            @include breakpoint-up(medium) {
+                                font-size: 2rem;
+                            }
+
+                            // media query for 1024px up - tablet device
+                            @include breakpoint-up(large) {
+                                font-size: 2.2rem;
+                            }
+                        }
+                    }
+                    // 2.a.1 Hero button
+                    button.hero-button {
+                        height: 3rem;
+                        width: 10rem;
+                        padding: 0px;
+                        background: $mainGrey;
+                        border: 0;
+                        margin: 1rem 0px;
+                        @include flexCenter();
+                        cursor: pointer;
+                        position: relative;
+                        vertical-align: middle;
+                        box-sizing: border-box;
+                        transition: color 0.25s;
+
+                        // media query for 420px down - only mobile phones
+                        @include breakpoint-down(xsmall) {
+                            margin: 0;
+                            margin-top: 1rem;
+                        }
+
+                        // media query for 520px up - smaller tablets and bigger mobile phones
+                        @include breakpoint-up(small) {
+                            height: 3.5rem;
+                            width: 12rem;
+                        }
+
+                        // media query for 740px up - smaller tablets and bigger mobile phones
+                        @include breakpoint-up(medium) {
+                            height: 4rem;
+                            width: 15rem;
+                        }
+
+                        // media query for 1024px up - tablet device
+                        @include breakpoint-up(large) {
+                            height: 3.5rem;
+                            width: 12rem;
+                        }
+
+                        span {
+                            position: absolute;
+
+                             &.top-border {
+                                 top: 0;
+                                 left: 0;
+                                 width: 0;
+                                 height: 5px;
+                                 background-color: $mainYellow;
+                                 transition:1500ms ease-in-out;
+
+                                 &.left-right {
+                                    width: 100%;
+                                 }
+
+                                 &.reverse {
+                                     width: 0;
+                                     right: 0;
+                                     left: auto;
+                                 }
+                             }
+
+                             &.right-border {
+                                top: 0;
+                                right: 0;
+                                width: 5px;
+                                height: 0;
+                                background-color: $mainYellow;
+                                transition:1500ms ease-in-out;
+
+                                &.up-down {
+                                    height: 100%;
+                                }
+
+                                &.reverse {
+                                    height: 0;
+                                    bottom: 0;
+                                    top: auto;
+                                }
+                             }
+
+                             &.bottom-border {
+                                 bottom: 0;
+                                 right: 0;
+                                 width: 0;
+                                 height: 5px;
+                                 background-color: $mainYellow;
+                                 transition:1500ms ease-in-out;
+
+                                 &.right-left {
+                                     width: 100%;
+                                 }
+
+                                 &.reverse {
+                                     width: 0;
+                                     left: 0;
+                                     right: auto;
+                                 }
+                             }
+
+                             &.left-border {
+                                 bottom: 0;
+                                 left: 0;
+                                 width: 5px;
+                                 height: 0;
+                                 background-color: $mainYellow;
+                                 transition:1500ms ease-in-out;
+
+                                 &.down-up {
+                                    height: 100%;
+                                 }
+
+                                 &.reverse{
+                                     height: 0;
+                                     top: 0;
+                                     bottom: auto;
+                                 }
+                             }
+                        }
+                        
+                        &:hover::after {
+                            content: "";
+                            position: absolute;
+                            top: -10px;
+                            left: -10px;
+                            width: 100%;
+                            height: 100%;
+                            border: 10px solid $mainYellow;
+                            background: $mainYellow;
+                            opacity: 0.3;
+                            filter: blur(1.5rem);
+                            z-index: -1;
+                        }
+        
+                        h3 {
+                            color: $drawingBlack;
+                            font-weight: 700;
+                            font-size: 1.2rem;
+                            @include textAppearAnimation();
+                            margin: 0px;
+
+                            // media query for 520px up - smaller tablets and bigger mobile phones
+                            @include breakpoint-up(small) {
+                                font-size: 1.3rem;
+                            }
+
+                            // media query for 740px up - smaller tablets and bigger mobile phones
+                            @include breakpoint-up(medium) {
+                                font-size: 1.4rem;
+                            }
+
+                            // media query for 1024px up - tablet device
+                            @include breakpoint-up(large) {
+                                font-size: 1.5rem;
+                            }
+                        }
+                    }
                 }
             }
+            
             // 2.b Hero services
             .hero-services-container {
-                height: 40%;
+                height: 45%;
                 width: 100%;
                 @include flexCenter();
                 flex-direction: column;
+
+                @include breakpoint-up(small) {
+                    height: 60%;
+                }
 
                 .border-effect-polygon {
                     position: relative;
@@ -500,25 +673,80 @@ main {
                     flex-direction: column;
                     border: 2px solid $drawingBlack;
 
+                    @include breakpoint-up(small) {
+                        height: 55%;
+                    }
+
+                    @include breakpoint-up(xlarge) {
+                        width: 70%;
+                        margin: 1.5rem auto auto;
+                    }
+
                     p {
-                        font-size: 0.9rem;
+                        font-size: 0.8rem;
                         padding: 0px 0.5rem;
                         text-align: center;
                         @include textAppearAnimation();
+
+
+                        // media query for 420px up
+                        @include breakpoint-up(xsmall) {
+                            font-size: 1rem;
+                        }
+
+                        // media query for 740px up
+                        @include breakpoint-up(medium) {
+                            font-size: 1.15rem;
+                        }
+
+                        // media query for 740px up
+                        @include breakpoint-up(large) {
+                        font-size: 1.25rem;
+                        }
                     }
 
                     .offer-overlay-polygon {
                         position: absolute;
-                        top: -0.6rem;
-                        height: 2rem;
+                        top: -0.8rem;
+                        height: 1.8rem;
                         width: max-content;
                         padding: 0px 2rem;
                         background: $mainGrey;
+
+                        // media query for 420px up
+                        @include breakpoint-up(xsmall) {
+                            top:-1rem;
+                        }
+
+                        // media query for 740px up
+                        @include breakpoint-up(medium) {
+                            top:-1.25rem;
+                        }
+
+                        // media query for 420px up
+                        @include breakpoint-up(large) {
+                            top:-1.4rem;
+                        }
 
                         h1 {
                             font-size: 1.3rem;
                             color: $drawingBlack;
                             @include textAppearAnimation();
+
+                            // media query for 420px up
+                            @include breakpoint-up(xsmall) {
+                                font-size: 1.5rem;
+                            }
+
+                            // media query for 420px up
+                            @include breakpoint-up(medium) {
+                                font-size: 1.8rem;
+                            }
+
+                            // media query for 420px up
+                            @include breakpoint-up(large) {
+                                font-size: 2rem;
+                            }
                         }
                     }
                     // 2.b.1 Hero services button
@@ -534,6 +762,16 @@ main {
                         vertical-align: middle;
                         box-sizing: border-box;
                         transition: color 0.25s;
+
+                        // media query for 420px up
+                        @include breakpoint-up(xsmall) {
+                            height: 2.5rem;
+                        }
+
+                        // media query for 740px up
+                        @include breakpoint-up(medium) {
+                            height: 2.8rem;
+                        }
 
                         &::before,
                         &::after {
@@ -594,6 +832,21 @@ main {
                             justify-self: center;
                             @include flexCenter();
                             @include textAppearAnimation();
+                            font-weight: bolder;
+
+                            @include breakpoint-up(small) {
+                                font-size: 1.4rem;
+                            }
+
+                            // media query for 740px up
+                            @include breakpoint-up(medium) {
+                                font-size: 1.6rem;
+                            }
+
+                            // media query for 740px up
+                            @include breakpoint-up(large) {
+                                font-size: 1.8rem;
+                            }
                         }
                     }
                 }
@@ -604,21 +857,69 @@ main {
     // 3. Offered services section
     section#services-section {
         min-height: max-content;
+        width: 90%;
+        margin: auto;
         @include flexColumn(center);
+        
+        @include breakpoint-up(small) {
+            margin-top: 3rem;
+        }
+
+        @include breakpoint-up(medium) {
+            width: 90%;
+            margin: auto;
+        }
+
+        @include breakpoint-up(large) {
+            margin-top: 3rem;
+        }
 
         // 3.a Offered services into text
         .offered-services {
             flex: 1;
             padding: 1rem 0.5rem 0.5rem 0.5rem;
 
+
+
             h1 {
                 font-size: 1.8rem;
+                padding-bottom: 0.5rem;
+
+                // media query for 420px up - mobile device
+                @include breakpoint-up(xsmall) {
+                    font-size: 1.9rem;
+                }
+
+                // media query for 740px up - mobile device
+                @include breakpoint-up(medium) {
+                    font-size: 2rem;
+                }
+
+                // media query for 1024px up - mobile device
+                @include breakpoint-up(large) {
+                    font-size: 2.2rem;
+                }
             }
 
             h2, h3, h4 {
                 font-size: 1.15rem;
                 padding: 0.6rem 0px;
                 transition: 1300ms ease-in;
+
+                // media query for 420px up - mobile device
+                @include breakpoint-up(xsmall) {
+                    font-size: 1.3rem;
+                }
+
+                // media query for 740px up - mobile device
+                @include breakpoint-up(medium) {
+                    font-size: 1.5rem;
+                }
+
+                // media query for 1024px up - mobile device
+                @include breakpoint-up(large) {
+                    font-size: 1.6rem;
+                }
             }
 
             h3 {
@@ -627,6 +928,16 @@ main {
 
             p {
                 font-size: 1rem;
+
+                // media query for 740px up - mobile device
+                @include breakpoint-up(medium) {
+                    font-size: 1.1rem;
+                }
+
+                // media query for 1024px up - mobile device
+                @include breakpoint-up(large) {
+                    font-size: 1.15rem;
+                }
 
                 span {
                     padding: 0.3rem 0px;
@@ -638,25 +949,6 @@ main {
                 opacity: 0;
                 transform: translateX(-50%);
                 transition: 600ms ease-in;
-            }
-
-            ul.fade-in#advantages-list {
-
-                .list-items {
-                    @include flexCenter();
-
-                    img {
-                        height: 40px;
-                        width: 40px;
-                    }
-
-                    &:hover {
-                        
-                        li {
-                            margin-left: 3.5%;
-                        }
-                    }
-                }
             }
     
             ul.fade-in.appear {
@@ -674,23 +966,61 @@ main {
                     list-style: none;
                     align-self: center;
                     padding: 0.5rem 0px;
+
+
+                    // media query for 740px up - mobile device
+                    @include breakpoint-up(medium) {
+                        font-size: 1.1rem;
+                    }
+
+                    // media query for 1024px up - mobile device
+                    @include breakpoint-up(large) {
+                        font-size: 1.15rem;
+                    }
                 }
 
                 img {
                     margin: 0.5rem 2px;
-                    
+                    height: 25px;
+                    width: 25px;
+
+                    @include breakpoint-up(xsmall) {
+                        height: 30px;
+                        width: 30px;
+                    }
                 }
 
                 &:hover {
 
                     li {
                         margin-left: 2.5%;
-                        transition: 250ms ease;
+                        transition: 250ms ease-in-out;
                     }
         
                     img {
                         transform: rotate(-110deg) translateY(15%);
                         transition: 250ms ease-in-out;
+                    }
+                }
+            }
+
+            ul.fade-in#advantages-list {
+                @include flexStart();
+                flex-direction: column;
+
+                .list-items {
+                    @include flexCenter();
+
+                    img {
+                        height: 40px;
+                        width: 40px;
+                    }
+
+                    &:hover {
+                        
+                        li {
+                            margin-left: 3.5%;
+                        }
                     }
                 }
             }
@@ -705,21 +1035,45 @@ main {
 
             .faded-image-container {
                 width: 100%;
-                height: 25vh;
+                height: 30vh;
                 background: black;
                 opacity: 0;
-                transform: translateX(-50%);
                 transition: 1200ms ease-in;
+
+                // media query for 420px up - mobile device
+                @include breakpoint-up(xsmall) {
+                    height: 35vh;
+                }
+
+                // media query for 520px up - bigger mobile device
+                @include breakpoint-up(small) {
+                    height: 40vh;
+                }
+
+                // media query for 740px up - bigger mobile device
+                @include breakpoint-up(medium) {
+                    height: 55vh;
+                }
+
+                // media query for 1024px up - bigger mobile device
+                @include breakpoint-up(large) {
+                    height: 65vh;
+                }
+
+                // media query for 1400px up - bigger mobile device
+                @include breakpoint-up(xlarge) {
+                    height: 65vh;
+                    width: 80%;
+                }
 
                 img {
                     height: 100%;
                     width: 100%;
                 }
-            }
 
-            .faded-image-container.appear {
-                opacity: 1;
-                transform: translateY(0%);
+                &.appear {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -727,13 +1081,20 @@ main {
     // 4. Prices section
     section#prices {
         height: max-content;
+        width: 90%;
+        margin: auto;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
         justify-content: flex-start;
-        padding: 0px 0.5rem;
+        padding: 0px 0.5rem 2rem;
 
-        h2 {
+        @include breakpoint-up(medium) {
+            width: 90%;
+            margin: auto; 
+        }
+
+        h1 {
             font-size: 1.8rem;
             padding-bottom: 0.5rem;
             align-self: flex-start;
@@ -741,6 +1102,10 @@ main {
 
         p {
             padding-bottom: 0.5rem;
+
+            @include breakpoint-up(large) {
+                padding-bottom: 1rem;
+            }
         }
         // 4.a Table of prices
         table {
@@ -749,6 +1114,11 @@ main {
             padding-top: 5vh;
             border: 1px solid $mainBlue;
             justify-self: flex-end;
+
+            @include breakpoint-up(large) {
+                width: 65%;
+                margin: auto;
+            }
 
             tr:nth-child(1) {
                 background-color: $mainBlue!important;
@@ -790,6 +1160,14 @@ main {
     // 5. Contact section
     section#contact-section {
         height: max-content;
+        width: 90%;
+        margin: auto;
+        padding-bottom: 2rem;
+
+        @include breakpoint-up(medium) {
+            width: 90%;
+            margin: auto;
+        }
         // 5.a Contact section layout
         .contact-layout {
             display: grid;
@@ -800,6 +1178,13 @@ main {
             "detail detail"
             "form form";
             padding: 0px 0.5rem;
+
+            @include breakpoint-up(medium) {
+                grid-template-areas: 
+                "intro intro"
+                "form detail"
+                "form detail";
+            }
             // 5.a.1 Contact introduction
             .contact-intro {
                 grid-area: intro;
@@ -840,6 +1225,11 @@ main {
                         border-radius: 50%;
                         border: 1px solid $drawingBlack;
                         background: white;
+
+                        @include breakpoint-up(xsmall) {
+                            height: 15rem;
+                            width: 12rem;
+                        }
                     }
                 }
 
@@ -850,10 +1240,14 @@ main {
                         font-size: 0.9rem;
                         font-weight: 600;
                         padding: 0.5rem;
-                    }
 
-                    p.underline {
-                        border-bottom: 1px solid $drawingBlack;
+                        @include breakpoint-up(xsmall) {
+                            font-size: 1.1rem;
+                        }
+
+                        &.underline {
+                            border-bottom: 1px solid $drawingBlack;
+                        }
                     }
                 }
             }
@@ -862,6 +1256,9 @@ main {
                 grid-area: form;
                 height: 100%;
                 width: 100%;
+                margin-top: 3rem;
+                @include flexCenter();
+                flex-direction: column;
 
                 legend {
                     padding-top: 1rem;
@@ -889,6 +1286,11 @@ main {
                                 border: 1px solid $mainBlue;
                                 border-radius: 5px;
 
+                                @include breakpoint-up(xsmall) {
+                                    width: 22rem;
+                                    height: 2rem;
+                                }
+
                                 
                                 &:focus {
                                     outline: none!important;
@@ -906,6 +1308,11 @@ main {
                                 height: 17rem;
                                 border: 1px solid $mainBlue;
                                 border-radius: 5px;
+
+                                @include breakpoint-up(xsmall) {
+                                    width: 22rem;
+                                    height: 22rem;
+                                }
 
                                 &:focus {
                                     outline: none!important;
@@ -1038,41 +1445,26 @@ main {
                     justify-self: flex-end;
         
                     li {
-                        position: relative;
                         width: max-content;
                         list-style: none;
+                        margin-bottom: 0.2rem;
                         
                         a {
+                            position: relative;
                             text-decoration: none;
                             color: black;
                             font-weight: bolder;
-                            padding-bottom: 10px;
                             font-size: 0.9rem;
                         }
         
                         a::after {
-                            content: "";
+                            @include underTextAnimation();
                             background: black;
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            height: 0.2rem;
-                            width: 100%;
-                            opacity: 0;
-                            transform: translateX(-50%);
-                            transition:250ms ease-in;
                         }
         
                         a:hover::after {
-                            content: "";
-                            background: black;
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            height: 0.2rem;
                             width: 100%;
-                            opacity: 1;
-                            transform: translateX(0%);
+                            left: 0;
                         }
                     }
                 }
@@ -1091,174 +1483,5 @@ main {
     }
 }
 
-@media only screen and (min-width: 1024px) {
-    main {
-        padding-top: 8vh;
-
-        section#main-page {
-            height: 92vh;
-
-            .hero {
-                height: 100%;
-
-                .main-picture-container {
-                    height: 65%;
-                    width: 100%;
-                    background-repeat: no-repeat;
-                    background-size: 100vw 100%;
-                }
-
-                .left-sticker-container {
-                    width: 45%;
-
-                    .sticker-text {
-                        @include flexCenter();
-
-                        h1 {
-                            font-size: 4rem;
-                            text-shadow: 1px 1px black;
-                            -webkit-text-stroke: 0.5px black;
-                            padding: 1rem;
-                        }
-
-                        h2 {
-                            font-size: 2.5rem;
-                            text-shadow: 1px 1px black;
-                            -webkit-text-stroke: 0.5px black;
-                            padding: 1rem;
-                        }
-                    }
-
-                    button.hero-button {
-                        height: 4rem;
-                        width: 17rem;
-                        padding: 1rem;
-
-                        h3 {
-                            font-size: 2rem;
-                        }
-                    }
-                }
-
-                .hero-services-container {
-                    height: 30%;
-
-                    .border-effect-polygon {
-                        height: 80%;
-                        width: 80%;
-                        margin: 1.5rem auto auto;
-
-
-                        p {
-                            font-size: 1.2rem;
-                        }
-
-                        .offer-overlay-polygon {
-                            top: -1.3rem;
-
-                            h1 {
-                                font-size: 2.2rem;
-                            }
-                        }
-
-                        .border-button-polygon {
-                            height: 3.5rem;
-                            padding: 0px 5rem;
-                            width: max-content;
-                            bottom: -2rem;
-
-                            a.services-button {
-                                font-size: 2rem;
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        section#services-section-one {
-            height: 90vh;
-            @include flexColumn(center);
-
-            .offered-services {
-
-                .service-ilustration-images {
-                    @include flexCenter();
-
-                    .faded-image-container {
-                        width: 80%;
-                        height: 15vh;
-
-                    }
-                }
-            }
-        }
-
-        footer {
-            height: 40vh;
-
-            .footer-border {
-                height: 2vh;
-            }
-    
-            .about-owner {
-    
-                .footer-logo-container {
-                    display: none;
-                }
-    
-                ul {
-    
-                    li {
-                        font-size: 0.8rem;
-                    }
-                }
-            }
-    
-            .footer-navigation {
-    
-                .creator-contact {
-                    flex: 0.5;
-
-                    .contact-text {
-
-                        p {
-                            font-size: 0.8rem;
-                        }
-                        a {
-                            font-size: 0.8rem;
-                        }
-                    }
-                }
-    
-                .back-to-links-container {
-                    justify-content: flex-start;
-                    width: auto;
-                    flex: 1.5;
-
-                    h3 {
-                        flex: 0.8;
-                        font-size: 1rem;
-                        margin: 6vh 2px;
-                        text-align: start;
-                    }
-    
-                    ul.back-to-links {
-                        flex: 1.2;
-                        width: 40%;
-                        justify-self: flex-end;
-                        li {
-                            
-                            a {
-                                font-size: 0.9rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 

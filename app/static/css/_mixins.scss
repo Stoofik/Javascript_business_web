@@ -7,11 +7,28 @@
     transition: 1s ease-in-out;
 }
 
+@mixin underTextAnimation {
+    content: "";
+    position: absolute;
+    background: $mainGrey;
+    bottom: 0;
+    right: 0;
+    height: 0.1rem;
+    width: 0%;
+    transition:250ms ease-in;
+}
+
 //Flex mixins
 @mixin flexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@mixin flexStart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 @mixin flexColumn($justify-content) {
@@ -70,11 +87,11 @@
 @media (min-width: 64em) {
     // styles
 }
-// sm: 420px, med: 540px, lg: 1024px, xlg: 1400px
-$breakpoints-up: ("small": "26.25em", "medium": "33.75em", "large": "64em", "xlarge": "87.5em");
+// xsm: 425px, sm: 520px, md: 740px, lg: 1024px, xlg: 1400px
+$breakpoints-up: ("xsmall": "26.5625em", "small": "32.5em", "medium": "46.25em", "large": "64em", "xlarge": "87.5em");
 
-// xsm: 419px,  small: 539px, med: 1023px, lg: 1399px
-$breakpoints-down: ("xsmall": "26.1875em", "small": "33.6875em", "medium": "63.9375em", "large": "87.4375em");
+// xxsm: 424px, xsm: 519px, sm: 739px, md:1023, lg: 1399px
+$breakpoints-down: ("xxsmall": "26.5em", "xsmall": "32.4375em", "small": "46,1875", "medium": "63.9375em", "large": "87.4375em");
 
 @mixin breakpoint-up($size) {
     @media (min-width: map-get($breakpoints-up, $size)) {

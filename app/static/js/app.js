@@ -42,41 +42,44 @@ navbarLinks.forEach((link) => {
 //Burger menu transformation effects
 //==================================
 const burgerTransform = () => {
+
     //variables
     let topBar = document.querySelector("span.bar#top");
     let midBar = document.querySelector("span.bar#mid");
     let botBar = document.querySelector("span.bar#bot");
 
-    //function to transform the burger when clicking the burger
-    burger.addEventListener('click', function() {
-        topBar.classList.toggle("close");
-        midBar.classList.toggle("close");
-        botBar.classList.toggle("close");
+    //array of variables for easier access
+    const bars = [topBar, midBar, botBar];
+    
+    // function to transform the burger to X when clicking the burger
+    bars.forEach((bar) => {
+        burger.addEventListener("click", () => {
+            bar.classList.toggle("close");
+        });
     });
 
     //function to transform the burger when clicking elsewhere
-    navbarBackground.addEventListener('click', function() {
-        topBar.classList.remove("close");
-        midBar.classList.remove("close");
-        botBar.classList.remove("close");
+    bars.forEach((bar) => {
+        navbarBackground.addEventListener('click', () => {
+            bar.classList.remove("close");
+        });
     });
 
     //function to transform the burger when clicking elsewhere
     sections.forEach((section) => {
-        section.addEventListener("click", function() {
-            topBar.classList.remove("close");
-            midBar.classList.remove("close");
-            botBar.classList.remove("close");
+        section.addEventListener("click", () => {
+            bars.forEach((bar) => {
+                bar.classList.remove("close");
+            });
         });
     });
 
     //function to transform burger when clicking a button
-
     navbarLinks.forEach((link) => {
         link.addEventListener("click", function() {
-            topBar.classList.remove("close");
-            midBar.classList.remove("close");
-            botBar.classList.remove("close");
+            bars.forEach((bar) => {
+                bar.classList.remove("close");
+            });
         });
     });
 }
@@ -84,16 +87,16 @@ burgerTransform();
 
 //function to blur the background when navbar is activated
 const blurBackgroundMobile = () => {
-    burger.addEventListener("click", function() {
+    burger.addEventListener("click", () => {
         navbarBackground.classList.toggle("active");
     });
     
-    navbarBackground.addEventListener("click", function() {
+    navbarBackground.addEventListener("click", () => {
         navbarBackground.classList.remove("active");
     });
     
     navbarLinks.forEach((link) => {
-        link.addEventListener("click", function() {
+        link.addEventListener("click", () => {
             navbarBackground.classList.remove("active");
         });
     });
@@ -105,65 +108,167 @@ blurBackgroundMobile();
 //===========================================
 
 
-// Nacteni hlavni stranky
+// Main paige load animations
 const loadHero = () => {
-    // selector All with for cycle used due to having two separate navbars, 
-    // one for PC and one for mobile
+
     const navbarLogo = document.querySelectorAll(".navbar-logo");
     //animation property
     slideLogoAnimation = "transform: translateX(0%); opacity: 1";
 
     navbarLogo.forEach(logo => {
-        window.addEventListener("load", function() {
+        this.addEventListener("load", () => {
         logo.style.cssText = slideLogoAnimation;
         });
     });
 };
 loadHero();
 
-// Postupne zobrazeni textu na hlavni strance
+// Text appear animations on load
 const loadIntroText = () => {
+
+    //** Navbar links appear animation **/
 
     //navbar links
     const homeLink = document.querySelector(".home-link");
     const servicesLink = document.querySelector(".services-link");
     const pricesLink = document.querySelector(".prices-link");
     const contactLink = document.querySelector(".contact-link");
-    //animation property
+
+    //list of links
+    const navbarLinks = [homeLink, servicesLink, pricesLink, contactLink]
+
+    //link animation properties
+    let linksTimeout = 1100
+    const linksIncrement = 100
     const appearPropertyLinks = "transform: translateY(0%); opacity: 1";
 
-    setTimeout(function(){ homeLink.style.cssText = appearPropertyLinks; }, 1100);
-    setTimeout(function(){ servicesLink.style.cssText = appearPropertyLinks; }, 1200);
-    setTimeout(function(){ pricesLink.style.cssText = appearPropertyLinks; }, 1300);
-    setTimeout(function(){ contactLink.style.cssText = appearPropertyLinks; }, 1400);
+    //function to assign a property to each link after a specified timeout
+    navbarLinks.forEach((link) => {
+        setTimeout(() => {
+            link.style.cssText = appearPropertyLinks;
+        }, linksTimeout);
+        linksTimeout += linksIncrement;
+    });
+
+    //** Text on hero paige animation **/
 
     //main hero text
     const introTextH1 = document.querySelector(".sticker-text h1");
     const introTextH2 = document.querySelector(".sticker-text h2");
     const heroContactButton = document.querySelector(".hero-button h3");
-    //animation property
-    const appearPropertyIntro = "transform: translateY(0%); opacity: 1"
-
-    setTimeout(function(){ introTextH1.style.cssText = appearPropertyIntro; }, 1100);
-    setTimeout(function(){ introTextH2.style.cssText = appearPropertyIntro; }, 1200);
-    setTimeout(function(){ heroContactButton.style.cssText = appearPropertyIntro; }, 1300);
-
-    //What can i offer text
-
+    //main hero offer text
     const introOffer = document.querySelector(".offer-overlay-polygon h1");
     const offerText = document.querySelector(".border-effect-polygon p");
     const offerBtn = document.querySelector("a.services-button");
 
-    setTimeout(function(){ introOffer.style.cssText = appearPropertyIntro; }, 1350);
-    setTimeout(function(){ offerText.style.cssText = appearPropertyIntro; }, 1350);
-    setTimeout(function(){ offerBtn.style.cssText = appearPropertyIntro; }, 1400);
+    //list of all text to appear one after another
+    const heroTexts = [introTextH1, introTextH2, heroContactButton, introOffer, offerText, offerBtn];
+
+    //animation properties
+    let textTimeout = 1100;
+    const textIncrement = 50;
+    const appearPropertyIntro = "transform: translateY(0%); opacity: 1"
+
+    //function to assign property after certain delay
+    heroTexts.forEach((text) => {
+        setTimeout(() => {
+            text.style.cssText = appearPropertyIntro;
+        }, textTimeout);
+        textTimeout += textIncrement;
+    });
 };
 loadIntroText();
 
-// postupne zobrazeni textu pri scrollovani strankou
+// image function slider on the main page
+const imageSlider = () => {
+    //selecting images
+    const sliderImages = document.querySelectorAll(".img-slider-container img");
+
+    //time period between the image switch
+    const nextImageDelay = 5000;
+    //the count of images
+    let currentImageCounter = 0;
+    //making the first picute visible
+    sliderImages[currentImageCounter].style.opacity = "1";
+
+    //function to switch the opacity between each image
+    function nextImage() {
+        //currently displayed picture dissapears
+        sliderImages[currentImageCounter].style.opacity = "0";
+        //variable that repeatedly returns numbers from 1 to number of images to ensure a never ending carousel
+        currentImageCounter = (currentImageCounter + 1) % sliderImages.length;
+        //displaying the image next in line
+        sliderImages[currentImageCounter].style.opacity = "1";
+    }
+    //repeating the function to infinity
+    setInterval(nextImage, nextImageDelay);
+};
+imageSlider();
+
+// function to create an electric glow running on the contact button
+const buttonGlow = () => {
+
+    //top, right, bottom and left borders
+    const topBorder = document.querySelector(".top-border");
+    const rightBorder = document.querySelector(".right-border");
+    const bottomBorder = document.querySelector(".bottom-border");
+    const leftBorder = document.querySelector(".left-border");
+
+    //list of borders and their classes to be assigned as they are in the order in the list
+    const borders = [topBorder, rightBorder, bottomBorder, leftBorder];
+    const classes = ["left-right", "up-down", "right-left", "down-up"];
+    let loadInterval = 1000;
+
+    //initial border load
+    for (let i = 0; i < borders.length; i++) {
+        setTimeout(() => {
+            borders[i].classList.add(classes[i]);
+        }, loadInterval);
+    };
+
+    //top and bottom border run animation
+    function topLeftToRight() {
+        return new Promise((resolve) => {
+            //animating the left to right run effect
+            setTimeout(() => {
+                topBorder.classList.toggle("reverse");
+                bottomBorder.classList.toggle("reverse");
+                resolve();
+            }, loadInterval);
+        });
+    };
+
+    //right and left border run animation
+    function rightTopToBottom() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                rightBorder.classList.toggle("reverse");
+                leftBorder.classList.toggle("reverse");
+                resolve();
+            },loadInterval); 
+        });
+    };
+
+    //running the animations one after another
+    async function runAnimation() {
+        await topLeftToRight();
+        await rightTopToBottom();
+    };
+
+    //repeating the animation each 1.5sec
+    setInterval(() => {
+        runAnimation();
+    }, 1500);
+     
+}
+buttonGlow();
+    
+
+// text appear while scrolling through the page
 const textAppearOnScroll = () => {
     const faders = document.querySelectorAll(".fade-in");
 
+    //options for the text to appear only when scrolled past -100px
     const appearOptions =  {
         treshold: 1,
         rootMargin: "0px 0px -100px 0px"
@@ -219,40 +324,48 @@ const imgAppearOnScroll = () => {
 imgAppearOnScroll();
 
 
-// scroll animace z vybraneho mista na druhe
+// scroll animation from links/buttons to selected section
 function smoothScroll(target, duration) {
     let scrollHere = document.querySelector(target);
-    let navbarPc = document.querySelector("nav.pc-nav");
-    let navbarMobile = document.querySelector("nav.mobile-nav");
+    const navbarPc = document.querySelector("nav.pc-nav");
+    const navbarMobile = document.querySelector("nav.mobile-nav");
 
-    let navbarPcPosition = navbarPc.getBoundingClientRect().height;
-    let navbarMobilePosition = navbarMobile.getBoundingClientRect().height;
+    // extracting the navbar height
+    const navbarPcPosition = navbarPc.getBoundingClientRect().height;
+    const navbarMobilePosition = navbarMobile.getBoundingClientRect().height;
 
-    // determines if there is mobile or PC navbar, to asign the correct height
+    //setting up the variable for future assingment to determine if mobile or PC nav is used
+    let navbarPosition = 0;
+
+    // determines if there is mobile or PC navbar
     if(navbarPcPosition === 0) {
         navbarPosition = navbarMobilePosition;
     } else {
         navbarPosition = navbarPcPosition;
     };
 
+    //calculation of the target position to scroll to
     let targetPosition = scrollHere.getBoundingClientRect().top+window.pageYOffset-navbarPosition;
+    // setting up variables for scroll function
     let startPosition = window.pageYOffset;
     let distance = targetPosition - startPosition;
     let startTime = null;
 
+    //easing function to smoothen the scrolling effect
+    function ease(t, b, c, d) {
+        t /= d/2;
+        if (t < 1) return c/2*t*t + b;
+        t--;
+        return -c/2 * (t*(t-2) - 1) + b;
+    };
+
+    //function to animate the scroll effect
     function animationScroll(currentTime) {
         if(startTime === null) startTime = currentTime;
         let timeElapsed = currentTime - startTime;
         let run = ease(timeElapsed, startPosition, distance, duration);
         window.scrollTo(0, run);
         if(timeElapsed < duration) requestAnimationFrame(animationScroll);
-    };
-
-    function ease(t, b, c, d) {
-        t /= d/2;
-        if (t < 1) return c/2*t*t + b;
-        t--;
-        return -c/2 * (t*(t-2) - 1) + b;
     };
 
     requestAnimationFrame(animationScroll);
@@ -265,7 +378,7 @@ const scrollToLink = () => {
     let navbarHome = document.querySelectorAll(".home-link");
 
     navbarHome.forEach((element) => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', () => {
             smoothScroll("section#main-page", 1000);
         });
     });
@@ -274,7 +387,7 @@ const scrollToLink = () => {
     let navbarServices = document.querySelectorAll(".services-link");
 
     navbarServices.forEach((element) => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', () => {
             smoothScroll("section#services-section", 1000);
         });
     });
@@ -283,7 +396,7 @@ const scrollToLink = () => {
     let navbarPrices = document.querySelectorAll(".prices-link");
 
     navbarPrices.forEach((element) => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', () => {
             smoothScroll("section#prices", 1000);
         });
     });
@@ -292,7 +405,7 @@ const scrollToLink = () => {
     let navbarContact = document.querySelectorAll(".contact-link");
 
     navbarContact.forEach((element) => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', () => {
             smoothScroll("section#contact-section", 1000);
         });
     });
@@ -300,56 +413,47 @@ const scrollToLink = () => {
     // from main page to contact
     let heroContactButton = document.querySelector(".hero-button");
 
-    heroContactButton.addEventListener("click", function() {
+    heroContactButton.addEventListener("click",()  =>{
         smoothScroll("section#contact-section", 1000);
     });
 
     let heroServicesButton = document.querySelector(".border-button-polygon");
 
-    heroServicesButton.addEventListener("click", function() {
+    heroServicesButton.addEventListener("click",()  =>{
         smoothScroll("section#services-section", 1000);
     });
 
     //from footer to main page
     let footerHomeBtn = document.querySelector(".back-main-page");
 
-    footerHomeBtn.addEventListener("click", function() {
+    footerHomeBtn.addEventListener("click",()  =>{
         smoothScroll("section#main-page", 1000);
     });
 
     //from footer to services page
     let footerServicesBtn = document.querySelector(".back-services");
 
-    footerServicesBtn.addEventListener("click", function () {
+    footerServicesBtn.addEventListener("click", () => {
         smoothScroll("section#services-section", 1000);
     });
 
     let footerPricesBtn = document.querySelector(".back-prices");
 
     //from footer to prices page
-    footerPricesBtn.addEventListener("click", function () {
+    footerPricesBtn.addEventListener("click", () => {
         smoothScroll("section#prices", 1000);
     });
 
     //from footer to Contact page
     let footerContactBtn = document.querySelector(".back-contact");
 
-    footerContactBtn.addEventListener("click", function () {
+    footerContactBtn.addEventListener("click", () => {
         smoothScroll("section#contact-section", 1000);
     });
 };
 
 scrollToLink();
 
-//function to enlarge image when clicked (possibly not used?)
 
-// const enlargeImage = () => {
-//     smallImage = document.querySelectorAll(".faded-image-container");
-
-//     smallImage.forEach((image) => {
-//         console.log(image);
-//     });
-// };
-// enlargeImage();
 
 
