@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask.helpers import flash
 from flask_mail import Mail, Message
-from app.forms import ContactForm
+from forms import ContactForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "000abcdefghijk123456000"
@@ -54,3 +54,6 @@ def home():
 @app.route("/message_sent", methods=["POST", "GET"])
 def form_submit():
     return render_template("form_submit.html"), {"Refresh": "3, url=http://127.0.0.1:5000/"}
+
+if __name__ == '__main__':
+    app.run(debug=True)
