@@ -127,13 +127,13 @@ nav.pc-nav {
             @include textAppearAnimation();
             
             a {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 text-transform: uppercase;
                 color: $mainGrey;
                 position: relative;
 
                 @include breakpoint-up(xlarge) {
-                    font-size: 1.3rem;
+                    font-size: 1.15rem;
                 }
 
                 &::after {
