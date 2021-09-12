@@ -4,3 +4,7 @@ This web page project started with the idea to create a bussiness website for my
 I would still like to use this webpage as an example, however not so much of my skills, but rather dedication and willingness to learn new things and give them my free time. Web developement has truly become my obsession during the last half year and i am eager to discover and learn my skills. The whole page contains an unhealthy amount of "animations" however for me figuring how to "animate" and make things moving was the main focus during this project, as javascript is my biggest challenge at the moment.
 
 I will gladly accept any objections regarding this project, as it really is the first "real" thing i have done on my own and without any prior education in this field.
+
+The site is also deployed on heroku:
+https://mydadsweb.herokuapp.com/
+
